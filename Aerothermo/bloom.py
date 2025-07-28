@@ -79,7 +79,7 @@ def create_bloom_config(num_obj, bloom, options, path):
 def generate_BL_CFD(j, options, num_obj, bloom, input_grid, output_grid):
     path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    path_folder = '/CFD_Grid/Bloom/bloom'
+    path_folder = '/CFD_Grid/Bloom/'
 
     create_bloom_config(num_obj, bloom, options, path_folder)
     subprocess.run(['python', path+'/Executables/su2io/su2gmf/su2_to_gmf.py', '-m' ,options.output_folder +'/CFD_Grid/'+input_grid+'.su2','-o',options.output_folder+'/CFD_Grid/Bloom/'+input_grid+str(j)])

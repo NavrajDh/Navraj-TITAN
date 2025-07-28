@@ -603,17 +603,14 @@ class Options():
 
     def save_mesh(self,titan):
         outfile = open(self.output_folder + '/Restart/'+'Mesh.p','wb')
-        is_saved = False
         recursion_limit = sys.getrecursionlimit()
-        while not is_saved:
-            try:
-                pickle.dump(titan, outfile)
-                is_saved=True
-            except:
-                print('Mesh saving failed at recursion limit: {}'.format(recursion_limit))
-                is_saved=False
-                recursion_limit=int(np.ceil(1.1*recursion_limit))
-                sys.setrecursionlimit(recursion_limit)
+        try:
+            pickle.dump(titan, outfile)
+        except:
+            print('Mesh saving failed at recursion limit: {}'.format(recursion_limit))
+            recursion_limit=int(np.ceil(1.1*recursion_limit))
+            sys.setrecursionlimit(recursion_limit)
+            pickle.dump(titan, outfile)
             
         outfile.close() 
 
@@ -647,16 +644,14 @@ class Options():
         for file in [self.output_folder + '/Restart/'+ 'Assembly_State.p',self.output_folder + '/Restart/'+ 'Assembly_State_'+str(i)+'_.p']:
             recursion_limit = sys.getrecursionlimit()
             outfile = open(file,'wb')
-            is_saved = False
-            while not is_saved:
-                try:
-                    pickle.dump(titan, outfile)
-                    is_saved=True
-                except:
-                    print('Saving failed at recursion limit: {}'.format(recursion_limit))
-                    is_saved=False
-                    recursion_limit=int(np.ceil(1.1*recursion_limit))
-                    sys.setrecursionlimit(recursion_limit)
+            try:
+                pickle.dump(titan, outfile)
+                is_saved=True
+            except:
+                print('Saving failed at recursion limit: {}'.format(recursion_limit))
+                is_saved=False
+                recursion_limit=int(np.ceil(1.1*recursion_limit))
+                sys.setrecursionlimit(recursion_limit)
             outfile.close()
 
         if CFD:
@@ -1047,6 +1042,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     # Debug adaptive timestepping options
     options.dynamics.ignore_mach = get_config_value(configParser, 0.0, 'Time','Debug_mach_cull','float')
     options.dynamics.ignore_mass = get_config_value(configParser, 0.0, 'Time','Debug_mass_cull','float')
+    options.dynamics.ignore_obj  = get_config_value(configParser, '','Time','Debug_obj_cull', 'str').split(',')
     #Read Thermal options
     options.thermal.ablation       = get_config_value(configParser, False, 'Thermal', 'Ablation', 'boolean')
     if options.thermal.ablation:

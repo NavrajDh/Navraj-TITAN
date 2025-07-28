@@ -84,12 +84,13 @@ def write_output_data(titan, options):
         df['Roll'] =     [assembly.roll*180/np.pi]
         df['Pitch'] =    [assembly.pitch*180/np.pi]
         df['Yaw'] =      [assembly.yaw*180/np.pi]
-        df['Roll_distance'] = [assembly.unmodded_angles[0]*180/np.pi]
-        df['Pitch_distance'] = [assembly.unmodded_angles[1]*180/np.pi]
-        df['Yaw_distance'] = [assembly.unmodded_angles[2]*180/np.pi] 
+        df['distRoll'] = [assembly.unmodded_angles[0]*180/np.pi]
+        df['distPitch'] = [assembly.unmodded_angles[1]*180/np.pi]
+        df['distYaw'] = [assembly.unmodded_angles[2]*180/np.pi] 
         df['VelRoll'] =  [assembly.roll_vel*180/np.pi]
         df['VelPitch'] = [assembly.pitch_vel*180/np.pi]
         df['VelYaw'] =   [assembly.yaw_vel*180/np.pi]
+        df['magnitudeOmega'] = np.linalg.norm([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])*180/np.pi
 
         #Quaternion Body -> ECEF frame        
         df['Quat_w']   = [assembly.quaternion[3]]
@@ -156,7 +157,6 @@ def write_output_data(titan, options):
         for obj in assembly.objects:
             df["Obj_name"] = [obj.name]
             df["Density"] = [obj.material.density]
-            df["Photons_second"] = [obj.photons]
             df["Mass"] = [obj.mass]
             if options.pato.flag:
                 df["MaxTemperature"] = [max(obj.pato.temperature)]

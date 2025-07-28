@@ -540,7 +540,9 @@ def fragmentation(titan, options):
             print('Low Mass fragmentation occured for assembly {} at {}kg'.format(it,titan.assembly[it].mass))
             objs_id = np.array([i for i in range(len(titan.assembly[it].objects))])
         for _id, obj in enumerate(titan.assembly[it].objects):
-
+            if obj.name.split('/')[-1] in options.dynamics.ignore_obj and len(titan.assembly[it].objects)==1:
+                    print ('Object {} ignored!'.format(obj.name.split('/')[-1]))
+                    objs_id = np.append(objs_id, _id)
             if obj.type == "Joint":
                 if obj.trigger_type.lower() == 'altitude' and titan.assembly[it].trajectory.altitude <= obj.trigger_value:
 

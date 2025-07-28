@@ -64,7 +64,7 @@ def loop(options = [], titan = []):
     if options.vehicle:
         titan.assembly[0].mass = options.vehicle.mass   
 
-    if options.dynamic_plots: plot = dynamic_plots.initialise_figs(titan)
+    if options.dynamic_plots: plot = dynamic_plots.initialise_figs(titan, options)
 
     while titan.iter < options.iters:
         options.high_fidelity_flag = False
