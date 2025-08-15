@@ -2,3 +2,5 @@
 launch.json
 link.cfg
 Executables
+*.xml
+settings.json
