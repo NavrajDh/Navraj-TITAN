@@ -93,9 +93,11 @@ def state_equation(titan,options,time,state_vectors):
         state_vectors = np.reshape(state_vectors,[-1,13])
 
     # First we communicate the state vector to assembly attributes
-    if titan.iter>0:
-        for _assembly, state_vector in zip(titan.assembly,state_vectors):
-            update_dynamic_attributes(_assembly,state_vector,options)
+    # if titan.iter>0:
+    unaltered_states = []
+    for _assembly, state_vector in zip(titan.assembly,state_vectors):
+        unaltered_states.append(_assembly.state_vector)
+        update_dynamic_attributes(_assembly,state_vector,options)
     
     # Then business as usual for computing forces...
     
@@ -127,15 +129,19 @@ def state_equation(titan,options,time,state_vectors):
                                    angularDerivatives.ddroll,
                                    angularDerivatives.ddpitch,
                                    angularDerivatives.ddyaw,])
-        
+    
+    # Finally reset the Dynamic state to be controlled by the chosen propagator
+    for _assembly, return_state in zip(titan.assembly, unaltered_states):
+        update_dynamic_attributes(_assembly,return_state,options,force=True)
+
     if reshape_flat: d_dt_state_vectors = np.array(d_dt_state_vectors).flatten()
     return d_dt_state_vectors, aero_states
 
-def update_dynamic_attributes(assembly,state_vector,options):
+def update_dynamic_attributes(assembly,state_vector,options, force=False):
     # This function takes an ECEF/BODY state vector and applies it to all the necessary attributes of a TITAN assembly
     # This ensures the new dynamics code plays nicely with other parts of TITAN.
 
-    if not np.array_equal(assembly.state_vector,state_vector): # Only need to update if state vector is different
+    if not np.array_equal(assembly.state_vector,state_vector) or force: # Only need to update if state vector is different
         # Update ECEF state...
         assembly.position[0] = state_vector[0]
         assembly.position[1] = state_vector[1]
@@ -504,7 +510,6 @@ def proj_area_adapt_wrapper(N, state_vectors,state_vectors_prior,derivatives_pri
 
 
 def explicit_rk_N(N,state_vectors,state_vectors_prior,derivatives_prior,dt,titan,options):
-    new_state_vectors = []
     k_n = []
     for i_k in range(RK_N_actual[str(N)]):
         k_state_vectors = np.array(state_vectors)

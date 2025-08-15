@@ -1047,7 +1047,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.ignore_mach = get_config_value(configParser, 0.0, 'Time','Debug_mach_cull','float')
     options.dynamics.ignore_mass = get_config_value(configParser, 0.0, 'Time','Debug_mass_cull','float')
     options.dynamics.ignore_obj  = get_config_value(configParser, '','Time','Debug_obj_cull', 'str').split(',')
-    
+    options.dynamics.ignore_obj = [ignore.strip() for ignore in options.dynamics.ignore_obj]
     #Read Thermal options
     options.thermal.ablation       = get_config_value(configParser, False, 'Thermal', 'Ablation', 'boolean')
     if options.thermal.ablation:
