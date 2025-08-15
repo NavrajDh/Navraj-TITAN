@@ -1028,21 +1028,26 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.time = 0
     options.dynamics.time_step  = get_config_value(configParser, options.dynamics.time_step, 'Time', 'Time_step', 'float')
     options.dynamics.propagator = get_config_value(configParser, options.dynamics.propagator, 'Time', 'Time_integration', 'str')
+
     if options.dynamics.propagator=='help': 
         print(options.dynamics.prop_warning)
         options.dynamics.propagator='euler'
+
     options.dynamics.prop_func =  propagation.get_integrator_func(options,options.dynamics.propagator.lower())
     options.dynamics.dt_max = get_config_value(configParser, 10*options.dynamics.time_step, 'Time', 'Adaptive_dt_max', 'float')
     options.dynamics.t_end = get_config_value(configParser, options.iters*options.dynamics.time_step, 'Time', 'Adaptive_end_time', 'float')
     options.dynamics.dt_initial = get_config_value(configParser, 0.1*options.dynamics.time_step, 'Time', 'Adaptive_dt_init', 'float')
+
     if 'adapt' in options.dynamics.propagator.lower(): 
         options.dynamics.acceleration_threshold = get_config_value(configParser, 0.05, 'Time', 'Spin_threshold', 'float')
         options.dynamics.tumbling_criterion = get_config_value(configParser, 0.0, 'Time', 'Tumble_threshold', 'float')
     options.dynamics.per_facet_flow = get_config_value(configParser, False, 'Time', 'Rotation_damping', 'boolean')
+
     # Debug adaptive timestepping options
     options.dynamics.ignore_mach = get_config_value(configParser, 0.0, 'Time','Debug_mach_cull','float')
     options.dynamics.ignore_mass = get_config_value(configParser, 0.0, 'Time','Debug_mass_cull','float')
     options.dynamics.ignore_obj  = get_config_value(configParser, '','Time','Debug_obj_cull', 'str').split(',')
+    
     #Read Thermal options
     options.thermal.ablation       = get_config_value(configParser, False, 'Thermal', 'Ablation', 'boolean')
     if options.thermal.ablation:
