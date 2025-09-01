@@ -66,7 +66,6 @@ def propagate(titan, options):
     # Writes the output data
     output.write_output_data(titan = titan, options = options)
     if options.time_fidelity>0.0: write_dense_output(titan, options)
-        
     # Communicate new vectors to assemblies
     for i_assem, _assembly in enumerate(titan.assembly):  
         update_dynamic_attributes(_assembly,new_state_vectors[i_assem],options)
@@ -495,13 +494,9 @@ def explicit_rk_adapt_wrapper(algorithm, state_vectors,state_vectors_prior,deriv
     else: 
         print('Propagator concluded with status {} ({} function evaluations)'.format(titan.rk_adapt.status,titan.rk_adapt.nfev))
         titan.end_trigger = True
-    
-    # if options.time_fidelity>0.0:
-    #     write_dense_output(titan, options)
+
     titan.delta_t = titan.rk_adapt.step_size
     return np.reshape(titan.rk_adapt.y,[-1,13]), None
-
-
 
 def proj_area_adapt_wrapper(N, state_vectors,state_vectors_prior,derivatives_prior,dt,titan,options):
     if titan.post_event_iter==0:

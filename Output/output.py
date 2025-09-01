@@ -22,7 +22,6 @@ import numpy as np
 import os
 import meshio
 from pathlib import Path
-from Dynamics.propagation import update_dynamic_attributes
 
 def write_output_data(titan, options, just_smooth=False):
 
@@ -173,17 +172,6 @@ def write_output_data(titan, options, just_smooth=False):
             
             df = df.round(decimals = 6)
             df.to_csv(options.output_folder + '/Data/'+ 'data_assembly.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data_assembly.csv'), index = False)
-
-def write_dense_output(titan,options, timeseries, interpolant):
-    
-    ## Firstly want the shape of the output, this is at present...
-    states = [np.reshape(interpolant(time),[-1,13]) for time in timeseries]
-    for i_assem, _assembly in enumerate(titan.assembly):
-        assem_states = np.array([_state[i_assem,:] for _state in states])
-        assem_data = np.zeros([len(timeseries),58+len(_assembly.freestream.species_index)])
-        
-
-
 
 def write_to_series(data_array,columns,filename):
     import pandas as pd
