@@ -22,8 +22,9 @@ import numpy as np
 import os
 import meshio
 from pathlib import Path
+from Dynamics.propagation import update_dynamic_attributes
 
-def write_output_data(titan, options):
+def write_output_data(titan, options, just_smooth=False):
 
     df = pd.DataFrame()
 
@@ -111,7 +112,7 @@ def write_output_data(titan, options):
         df['Temperature'] = [assembly.freestream.temperature]
         df['Pressure'] = [assembly.freestream.pressure]
         df['SpecificHeatRatio'] = [assembly.freestream.gamma]
-        df['Qint'] = [np.sum(assembly.aerothermo.heatflux*assembly.mesh.facet_area)]
+        #df['Qint'] = [np.sum(assembly.aerothermo.heatflux*assembly.mesh.facet_area)]
         df['qmax'] = [max(assembly.aerothermo.heatflux)]
         df['Tmax'] = [max(assembly.aerothermo.temperature)]
         df['knudsen'] = [assembly.freestream.knudsen]
@@ -147,6 +148,9 @@ def write_output_data(titan, options):
         df = pd.concat([df, df_mass], axis = 1)
 
         df = df.round(decimals = 12)
+        if options.time_fidelity>0.0:
+            df.to_csv(options.output_folder + '/Data/'+ 'data_smooth.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data_smooth.csv'), index = False)    
+            if just_smooth: return
         df.to_csv(options.output_folder + '/Data/'+ 'data.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data.csv'), index = False)
 
     df = pd.DataFrame()
@@ -169,6 +173,17 @@ def write_output_data(titan, options):
             
             df = df.round(decimals = 6)
             df.to_csv(options.output_folder + '/Data/'+ 'data_assembly.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data_assembly.csv'), index = False)
+
+def write_dense_output(titan,options, timeseries, interpolant):
+    
+    ## Firstly want the shape of the output, this is at present...
+    states = [np.reshape(interpolant(time),[-1,13]) for time in timeseries]
+    for i_assem, _assembly in enumerate(titan.assembly):
+        assem_states = np.array([_state[i_assem,:] for _state in states])
+        assem_data = np.zeros([len(timeseries),58+len(_assembly.freestream.species_index)])
+        
+
+
 
 def write_to_series(data_array,columns,filename):
     import pandas as pd
@@ -218,8 +233,9 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
             mDotMelt = assembly.mDotMelt
         #hf_cond = assembly.hf_cond
 
-        for cellid in range(len(assembly.mesh.facets)):
-            cellID = np.append(cellID, cellid)
+        #cellID = np.arange(len(assembly.mesh.facets))
+        # for cellid in range(len(assembly.mesh.facets)):
+        #     cellID = np.append(cellID, cellid)
 
         
         cells = {"triangle": facets}

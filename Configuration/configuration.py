@@ -121,6 +121,8 @@ class Dynamics():
         #: [seconds] Value of the time-step.
         self.time_step = time_step
 
+        #: [ECEF/Geodetic] Frame of specified input state
+        self.trajectory_frame = 'Geodetic'
         #: [str] Name of the propagator to be used in the dynamics (options - euler, ).
         self.propagator = propagator
 
@@ -547,7 +549,13 @@ class Options():
         self.save_freq = 500
 
         #:[int] Frequency of generating the output surface solution [per number of iterations]
-        self.output_freq = 500        
+        self.output_freq = 500
+
+        #:[float] Maximal time between dynamical outputs written to data.csv (seconds), disabled if 0.0
+        self.time_fidelity = 0.0    
+
+        #:[float] Last time at which a dynamical output was written
+        self.last_output_time = 0.0
 
         #: [int] Current iteration
         self.current_iter = 0
@@ -797,7 +805,7 @@ def check_initial_condition_array(initial_condition):
 
     return np.array(ids), np.array(condition)
 
-def read_trajectory(configParser):
+def read_trajectory(configParser, frame, planet=None):
     """
     Read the Trajectory specified in the config file
 
@@ -813,14 +821,62 @@ def read_trajectory(configParser):
     """
 
     trajectory = Trajectory()
+    if frame=='geodetic':
+        trajectory.altitude = get_config_value(configParser, trajectory.altitude, 'Trajectory', 'Altitude', 'float')
+        trajectory.velocity = get_config_value(configParser, trajectory.velocity, 'Trajectory', 'Velocity', 'float')
+        trajectory.gamma =    get_config_value(configParser, trajectory.gamma, 'Trajectory', 'Flight_path_angle', 'custom', 'angle')
+        trajectory.chi =      get_config_value(configParser, trajectory.chi, 'Trajectory', 'Heading_angle', 'custom', 'angle')
+        trajectory.latitude = get_config_value(configParser, trajectory.latitude, 'Trajectory', 'Latitude', 'custom', 'angle')
+        trajectory.longitude =get_config_value(configParser, trajectory.longitude, 'Trajectory', 'Longitude', 'custom', 'angle')
 
-    trajectory.altitude = get_config_value(configParser, trajectory.altitude, 'Trajectory', 'Altitude', 'float')
-    trajectory.velocity = get_config_value(configParser, trajectory.velocity, 'Trajectory', 'Velocity', 'float')
-    trajectory.gamma =    get_config_value(configParser, trajectory.gamma, 'Trajectory', 'Flight_path_angle', 'custom', 'angle')
-    trajectory.chi =      get_config_value(configParser, trajectory.chi, 'Trajectory', 'Heading_angle', 'custom', 'angle')
-    trajectory.latitude = get_config_value(configParser, trajectory.latitude, 'Trajectory', 'Latitude', 'custom', 'angle')
-    trajectory.longitude =get_config_value(configParser, trajectory.longitude, 'Trajectory', 'Longitude', 'custom', 'angle')
-    
+    elif frame=='ECEF' or frame=='ECI':
+            import pymap3d
+            state = get_config_value(configParser, '0,0,0,0,0,0', 'Trajectory', 'State', 'str').split(',')
+            state = np.array([float(value) for value in state])
+
+            if frame=='ECI': 
+                import datetime as dt
+                epoch = get_config_value(configParser, '1970/01/01 01:01:01', 'Trajectory', 'Epoch', 'str')
+                epoch = dt.datetime.strptime(epoch,'%Y/%m/%d %H:%M:%S')
+                state[:3] = pymap3d.eci2ecef(state[0],state[1],state[2],time=epoch)
+                rotMatrix = np.transpose([pymap3d.eci2ecef(1,0,0,epoch),
+                                           pymap3d.eci2ecef(0,1,0,epoch),
+                                           pymap3d.eci2ecef(0,0,1,epoch)])
+                state[3:] = rotMatrix @ state[3:] -np.cross([0,0,planet.omega()],state[:3])
+
+
+            [latitude, longitude, altitude] = pymap3d.ecef2geodetic(state[0], state[1], state[2],
+                                                                    ell=pymap3d.Ellipsoid(semimajor_axis = planet.ellipsoid()['a'], 
+                                                                                          semiminor_axis = planet.ellipsoid()['b']),
+                                                                    deg = False)
+            
+            [vEast, vNorth, vUp] = pymap3d.uvw2enu(state[3], state[4], state[5], latitude, longitude, deg=False)
+            velocity = np.linalg.norm(state[3:])
+            gamma = np.arcsin(np.dot(state[:3], state[3:])/(np.linalg.norm(state[:3])*velocity))
+            chi = np.arctan2(vEast,vNorth)
+
+            trajectory.altitude  =  altitude
+            trajectory.velocity  =  velocity
+            trajectory.gamma     =     gamma
+            trajectory.chi       =       chi
+            trajectory.latitude  =  latitude
+            trajectory.longitude = longitude
+
+            print('Converted state vector {}\nInto Geodetic trajectory with... \
+                  \nAltitude          | {}km\
+                  \nLatitude          | {}°\
+                  \nLongitude         | {}°\
+                  \nVelocity          | {}km/s\
+                  \nFlight Path Angle | {}°\
+                  \nHeading Angle     | {}°'.format(
+                      state.tolist(),
+                      np.round(altitude/1000,4),
+                      np.round(latitude*180/np.pi,4),
+                      np.round(longitude*180/np.pi,4),
+                      np.round(velocity/1000,4),
+                      np.round(gamma*180/np.pi,4),
+                      np.round(chi*180/np.pi,4),
+                  ))
     return trajectory
 
 def read_geometry(configParser, options):
@@ -1013,6 +1069,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.collision.flag = get_config_value(configParser, False, 'Options', 'Collision', 'boolean')
     options.material_file  = get_config_value(configParser, 'database_material.xml', 'Options', 'Material_file', 'str')
     options.dynamic_plots  = get_config_value(configParser, False, 'Options', 'Plot', 'boolean')
+    options.time_fidelity = get_config_value(configParser, options.time_fidelity, 'Options', 'Time_fidelity','float')
     options.time_counter   = 0
 
 
@@ -1092,6 +1149,8 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     #Read meshing options
     options.meshing.far_size  = get_config_value(configParser, 0.5, 'Mesh', 'Far_size', 'float')
     options.meshing.surf_size = get_config_value(configParser, 100, 'Mesh', 'Surf_size', 'float')
+    options.meshing.recursion = get_config_value(configParser, sys.getrecursionlimit(), 'Mesh', 'Recursion_limit', 'int')
+    sys.setrecursionlimit(options.meshing.recursion)
 
     #Read Freestream options
     options.freestream.model =  get_config_value(configParser, options.freestream.model, 'Freestream', 'Model', 'str')
@@ -1192,7 +1251,8 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
 
     else:
         #Read the initial trajectory details
-        trajectory = read_trajectory(configParser)
+        options.dynamics.trajectory_frame = get_config_value(configParser, options.dynamics.trajectory_frame, 'Trajectory', 'Frame', 'str')
+        trajectory = read_trajectory(configParser, options.dynamics.trajectory_frame, options.planet)
 
         if options.load_mesh:
             titan = options.read_mesh()

@@ -1507,6 +1507,6 @@ def compute_per_facet_flow_dir(assembly,flow_direction, do_pfm=False):
             velocity_resultant[i_centroid,:] -= np.cross(angular_velocity_vector,(facet_centroid-assembly.mesh.COG))
         
     mach_resultant = np.linalg.norm(velocity_resultant,axis=1)/free.sound
-    for i_v, v in enumerate(velocity_resultant):
-        velocity_resultant[i_v,:] = v / np.linalg.norm(v)
+    velocity_norm = np.linalg.norm(velocity_resultant, axis=1, keepdims=True)
+    velocity_resultant = velocity_resultant/velocity_norm
     return velocity_resultant,mach_resultant
