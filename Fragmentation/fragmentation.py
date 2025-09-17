@@ -211,7 +211,6 @@ def demise_components(titan, i, joints_id, options):
         titan.assembly[-1].aoa = titan.assembly[i].aoa
         titan.assembly[-1].slip = titan.assembly[i].slip
 
-        titan.post_event_iter = 0
         from Dynamics.propagation import construct_state_vector
         construct_state_vector(titan.assembly[-1])
         titan.assembly[-1].unmodded_angles = titan.assembly[i].unmodded_angles
@@ -617,6 +616,8 @@ def fragmentation(titan, options):
     titan.assembly = np.delete(titan.assembly,assembly_id).tolist()
 
     if fragmentation_flag:
+        titan.post_event_iter = 0
+        titan.event_time = titan.time
         for assembly in titan.assembly:
             assembly.rearrange_ids()
 

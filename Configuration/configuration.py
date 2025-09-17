@@ -551,11 +551,8 @@ class Options():
         #:[int] Frequency of generating the output surface solution [per number of iterations]
         self.output_freq = 500
 
-        #:[float] Maximal time between dynamical outputs written to data.csv (seconds), disabled if 0.0
+        #:[float] Maximal time between dynamical outputs written to data_smooth.csv (seconds), disabled if 0.0
         self.time_fidelity = 0.0    
-
-        #:[float] Last time at which a dynamical output was written
-        self.last_output_time = 0.0
 
         #: [int] Current iteration
         self.current_iter = 0
@@ -1070,6 +1067,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.material_file  = get_config_value(configParser, 'database_material.xml', 'Options', 'Material_file', 'str')
     options.dynamic_plots  = get_config_value(configParser, False, 'Options', 'Plot', 'boolean')
     options.time_fidelity = get_config_value(configParser, options.time_fidelity, 'Options', 'Time_fidelity','float')
+    options.write_dense_solutions = get_config_value(configParser, False, 'Options','Dense_solutions', 'boolean' )
     options.time_counter   = 0
 
 
@@ -1292,7 +1290,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     if options.collision.flag:
         for assembly in titan.assembly: collision.generate_collision_mesh(assembly, options)
         collision.generate_collision_handler(titan, options)
-
+    if options.time_fidelity>0.0: titan.last_output_time=titan.time
     ### if options.FENICS:
     ###     fenics = TITAN.FENICS()
     ### else:

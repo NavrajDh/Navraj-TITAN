@@ -1,6 +1,7 @@
 *.pyc
 launch.json
-link.cfg
+link*.cfg
 Executables
+TITAN_sol
 *.xml
 settings.json

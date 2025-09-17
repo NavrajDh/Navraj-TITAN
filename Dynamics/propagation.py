@@ -1,8 +1,10 @@
+import os
 from Dynamics import dynamics, frames, collision
 from Aerothermo import aerothermo
 from Forces import forces
 import pymap3d
 import numpy as np
+import pandas as pd
 from scipy.spatial.transform import Rotation as Rot
 from scipy.special import erf
 from scipy import integrate
@@ -10,8 +12,8 @@ from scipy.stats import uniform_direction
 from functools import partial
 from Output import output
 from warnings import warn
-from copy import copy
-
+from copy import copy, deepcopy
+import concurrent.futures, psutil
 ## Current implented integrators (define in cfg under [Time] as Time_integration='')...
 
 ## Constant time-step methods  
@@ -54,6 +56,10 @@ def propagate(titan, options):
         #Check collision for future time intervals with respect to current time-step velocity
         __, time_step = collision.check_collision(titan, options, time_step)
     
+    surface_solutions = output.create_surface_solution(titan,options)
+    for _assembly, sol in zip(titan.assembly, surface_solutions): 
+        _assembly.prev_surf_data = deepcopy(sol.cell_data)
+        # if hasattr(_assembly, 'surf_data'): _assembly.prev_surf_data = deepcopy(_assembly.surf_data)
     # Propagate according to propagator function...
     new_state_vectors, new_derivs = options.dynamics.prop_func(current_state_vectors,state_vectors_prior,derivatives_prior,time_step,titan,options)
     # Update prior derivatives
@@ -191,49 +197,20 @@ def update_dynamic_attributes(assembly,state_vector,options, force=False, return
 
         assembly.aoa = np.arctan2(Vz_B,Vx_B)
         assembly.slip = np.arcsin(Vy_B/np.sqrt(Vx_B**2 + Vy_B**2 +  Vz_B**2))
-    # if return_output_array: return np.array([assembly.id,assembly.mass,assembly.trajectory.altitude,assembly.distance_travelled,
-    #                                          assembly.trajectory.velocity,assembly.trajectory.gamma*180/np.pi,assembly.trajectory.chi*180/np.pi,
-    #                                          assembly.trajectory.latitude*180/np.pi,assembly.trajectory.longitude*180/np.pi,
-    #                                          assembly.aoa*180/np.pi,assembly.slip*180/np.pi,
-    #                                          assembly.position[0],assembly.position[1],assembly.position[2],
-    #                                          assembly.velocity[0],assembly.velocity[1],assembly.velocity[2],
-    #                                          assembly.COG[0],assembly.COG[1],assembly.COG[2],
-    #                                          assembly.body_force.force[0],assembly.body_force.force[1],assembly.body_force.force[2],
-    #                                          assembly.body_force.moment[0],assembly.body_force.moment[1],assembly.body_force.moment[2],
-    #                                          assembly.wind_force.lift,assembly.wind_force.drag,assembly.wind_force.crosswind,
-    #                                          assembly.mass,assembly.inertia[0,0],assembly.inertia[0,1],assembly.inertia[0,2],
-    #                                          assembly.inertia[1,1],assembly.inertia[1,2],assembly.inertia[2,2],
-    #                                          assembly.roll*180/np.pi,assembly.pitch*180/np.pi,assembly.yaw*180/np.pi,
-    #                                          assembly.unmodded_angles[0]*180/np.pi,assembly.unmodded_angles[1]*180/np.pi,assembly.unmodded_angles[2]*180/np.pi, 
-    #                                          assembly.roll_vel*180/np.pi,assembly.pitch_vel*180/np.pi,assembly.yaw_vel*180/np.pi,
-    #                                          np.linalg.norm([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])*180/np.pi, 
-    #                                          assembly.quaternion[3],assembly.quaternion[0],assembly.quaternion[1],assembly.quaternion[2],
-    #                                          assembly.quaternion_prev[3],assembly.quaternion_prev[0],assembly.quaternion_prev[1],assembly.quaternion_prev[2],
-    #                                          assembly.freestream.mach,assembly.freestream.sound,assembly.freestream.density,assembly.freestream.temperature,
-    #                                          assembly.freestream.pressure, assembly.freestream.gamma, 
-    #                                          np.sum(assembly.aerothermo.heatflux*assembly.mesh.facet_area),max(assembly.aerothermo.heatflux),
-    #                                          max(assembly.aerothermo.temperature),assembly.freestream.knudsen]
-
-    #     for specie, pct in zip(assembly.freestream.species_index, assembly.freestream.percent_mass[0]) :
-    #         df[specie+"_mass_pct"] = [pct]
-
-    #     #Stagnation properties
-    #     try:
-    #         df['Qstag'] = [assembly.aerothermo.qconvstag]
-    #         df['Qradstag'] = [assembly.aerothermo.qradstag]
-    #     except:
-    #         pass
-
-    #     try:
-    #         df['Pstag'] = [assembly.freestream.P1_s]
-    #         df['Tstag'] = [assembly.freestream.T1_s]
-    #         df['Rhostag'] = [assembly.freestream.rho_s]
-    #     except:
-    #         pass
-
-    #     #Reference Dimensionsal constants
-    #     df["Aref"] = [assembly.Aref]
-    #     df["Lref"] = [assembly.Lref]])
+        angular_momentum = assembly.inertia @ np.array([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel] )
+    if return_output_array: return np.array([assembly.id,assembly.mass,assembly.trajectory.altitude,
+                                             assembly.trajectory.velocity,assembly.trajectory.gamma*180/np.pi,assembly.trajectory.chi*180/np.pi,
+                                             assembly.trajectory.latitude*180/np.pi,assembly.trajectory.longitude*180/np.pi,
+                                             assembly.aoa*180/np.pi,assembly.slip*180/np.pi,
+                                             assembly.position[0],assembly.position[1],assembly.position[2],
+                                             assembly.velocity[0],assembly.velocity[1],assembly.velocity[2],
+                                             assembly.COG[0],assembly.COG[1],assembly.COG[2],
+                                             assembly.roll*180/np.pi,assembly.pitch*180/np.pi,assembly.yaw*180/np.pi,
+                                             assembly.unmodded_angles[0]*180/np.pi,assembly.unmodded_angles[1]*180/np.pi,assembly.unmodded_angles[2]*180/np.pi, 
+                                             assembly.roll_vel*180/np.pi,assembly.pitch_vel*180/np.pi,assembly.yaw_vel*180/np.pi,
+                                             np.linalg.norm([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])*180/np.pi,
+                                             angular_momentum[0], angular_momentum[1], angular_momentum[2], np.linalg.norm(angular_momentum),
+                                             assembly.quaternion[3],assembly.quaternion[0],assembly.quaternion[1],assembly.quaternion[2]])
     return assembly
 
 def construct_state_vector(assembly):
@@ -299,19 +276,70 @@ def append_derivatives(titan,options,new_derivs):
 
 def write_dense_output(titan, options):
     ## This function writes outputs of the previous iteration as a dense output as specified by the time fidelity option
-    options.last_output_time = titan.time
-    #prior_states = [_assembly.state_vector for _assembly in titan.assembly]
-    interpolant = titan.rk_adapt.dense_output()
-    times = np.arange(options.last_output_time+options.time_fidelity,options.last_output_time+titan.rk_adapt.step_size, options.time_fidelity)
-    for time in times:
-        if len(titan.assembly)>1:
-            print('Whup!')
-        state_vectors = np.reshape(interpolant(time),[-1,13])
-        for _assembly, state in zip(titan.assembly,state_vectors): update_dynamic_attributes(_assembly, state, options)
-        titan.time = time
-        output.write_output_data(titan, options, just_smooth=True)
-    titan.time = options.last_output_time
-    for _assembly, state in zip(titan.assembly,np.reshape(titan.rk_adapt.y,[-1,13])): update_dynamic_attributes(_assembly, state, options)
+    true_time = titan.time
+    times = np.arange(titan.last_output_time+options.time_fidelity,true_time+titan.rk_adapt.step_size, options.time_fidelity)
+    ## Some sanity checks
+    times = times[np.where(times>true_time)]
+    times = times[np.where(times<true_time+titan.rk_adapt.step_size)]
+    if options.write_dense_solutions: surface_solutions = output.create_surface_solution(titan,options)
+    if len(times)>0:
+        prior_states = copy(np.reshape(titan.rk_adapt.y,[-1,13]))
+        interpolant = titan.rk_adapt.dense_output()
+        times += interpolant.t_min - true_time
+        n_assem = len(titan.assembly)
+        data_array = np.zeros([len(times)*n_assem,38])
+        
+        # Some more sanity checks
+        if not np.min(times)>=interpolant.t_min:
+            warn('Extrapolating interpolant backwards! Past valid t={} to t={}'.format(interpolant.t_min,np.min(times)))
+        if not np.max(times)<=interpolant.t_max:
+            warn('Extrapolating interpolant forwards! Past valid t={} to t={}'.format(interpolant.t_max,np.max(times)))
+
+        timestep_func = partial(generate_dense_timestep,titan.assembly,options,interpolant)
+
+        for i_time, time in enumerate(times):
+            timestep_data, overwrite = timestep_func(time)
+            data_array[i_time*n_assem:i_time*n_assem+n_assem,:] = timestep_data
+            if len(overwrite)>0 and options.write_dense_solutions: 
+                output.update_surface_solution(titan,options,surface_solutions,overwrite)
+            if options.write_dense_solutions: 
+                output.write_surface_solution(options,surface_solutions,[_assembly.id for _assembly in titan.assembly],
+                                          np.round(time-interpolant.t_min + true_time,6),folder='Dense_surface_solution')
+            
+        for _assembly, state in zip(titan.assembly,prior_states): update_dynamic_attributes(_assembly, state, options)
+
+        header = [['Time', 'Assembly_ID','Mass','Altitude','Velocity',
+                'FlightPathAngle','HeadingAngle','Latitude','Longitude',
+                'AngleAttack','AngleSideslip','ECEF_X','ECEF_Y','ECEF_Z',
+                'ECEF_vU','ECEF_vV','ECEF_vW','BODY_COM_X','BODY_COM_Y',
+                'BODY_COM_Z','Roll','Pitch','Yaw','distRoll','distPitch',
+                'distYaw','velRoll','velPitch','velYaw','magnitudeOmega',
+                'angularMomentum_x','angularMomentum_y','angularMomentum_z',
+                'magnitudeAngularMomentum','Quat_w','Quat_x','Quat_y','Quat_z']]
+        data_array[:,0] += true_time - interpolant.t_min
+        data_array[:,0] = np.round(data_array[:,0],6)
+        df = pd.DataFrame(data_array,columns=header)
+        header = True if not os.path.exists(options.output_folder + '/Data/'+ 'data_smooth.csv') else False
+        titan.last_output_time=np.max(times)-interpolant.t_min + true_time
+        df.to_csv(options.output_folder + '/Data/'+ 'data_smooth.csv',header=header,mode='a',index=False)
+
+def generate_dense_timestep(assemblies, options, interpolant, time):
+    
+    n_assem = len(assemblies)
+    state_vectors = np.reshape(interpolant(time),[-1,13])
+    data_array = np.zeros([n_assem,38])
+    data_array[:,0] = np.array([time for _ in range(n_assem)])
+    overwrite_solutions = []
+    for i_assem, _assembly in enumerate(assemblies): 
+        data_array[i_assem,1:] = update_dynamic_attributes(_assembly, state_vectors[i_assem], options, return_output_array=True)
+        if hasattr(_assembly,'prev_surf_data'):
+            overwrite_data = copy(_assembly.prev_surf_data)
+            lerp_value = (time-interpolant.t_min)/(interpolant.t_max - interpolant.t_min)
+            for field in overwrite_data.keys():
+                overwrite_data[field][:] = (1-lerp_value)*np.array(_assembly.prev_surf_data[field][:]) + lerp_value * getattr(_assembly.aerothermo,field)
+            overwrite_solutions.append(overwrite_data)
+    return data_array, overwrite_solutions
+    
 
 def get_integrator_func(options, choice):
 
