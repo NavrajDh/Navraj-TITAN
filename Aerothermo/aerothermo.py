@@ -1502,9 +1502,9 @@ def compute_per_facet_flow_dir(assembly,flow_direction, do_pfm=False):
     velocity_resultant = free.mach*free.sound*np.tile(flow_direction,[len(assembly.mesh.facet_area),1])
     if do_pfm:
         angular_velocity_vector = np.array([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])
-
-        for i_centroid, facet_centroid in enumerate(assembly.mesh.facet_COG):
-            velocity_resultant[i_centroid,:] -= np.cross(angular_velocity_vector,(facet_centroid-assembly.mesh.COG))
+        centroid_radii =  assembly.mesh.facet_COG - assembly.mesh.COG
+        tangential_velocity = np.cross(angular_velocity_vector,centroid_radii)
+        velocity_resultant -= tangential_velocity
         
     mach_resultant = np.linalg.norm(velocity_resultant,axis=1)/free.sound
     velocity_norm = np.linalg.norm(velocity_resultant, axis=1, keepdims=True)
