@@ -35,11 +35,9 @@ def propagate(titan, options):
     #  a 13-D state vector of form [Position(x/y/z),Velocity(u/v/w),Quaternion(w/i/j/k),Angular velocity(roll_vel,pitch_vel,yaw_vel)]
     #  a propagator specified by options.dynamics.propagator
 
-    #TODO: Manage collision handling properly
     if options.collision.flag and len(titan.assembly)>1:
         flag_collision, __ = collision.check_collision(titan, options, 0)
         if flag_collision: collision.collision_physics(titan, options)
-        #if flag_collision: collision.collision_physics_simultaneous(titan, options)
 
     # If we go to switch.py or su2.py, Because we call deepcopy() function, we need to rebuild
     #the collision mesh
@@ -50,8 +48,7 @@ def propagate(titan, options):
     # Retrieve state vectors from each assembly object...
     current_state_vectors, state_vectors_prior, derivatives_prior = collect_state_vectors(titan, options)
 
-    ## NB: Highly unsure if I've correctly applied this collision implementation, see earlier todo
-    time_step = options.dynamics.time_step
+    time_step = options.dynamics.time_step if not hasattr(titan,'rk_adapt') else options.dynamics.dt_max
     if options.collision.flag and len(titan.assembly)>1:
         #Check collision for future time intervals with respect to current time-step velocity
         __, time_step = collision.check_collision(titan, options, time_step)
@@ -59,7 +56,7 @@ def propagate(titan, options):
     surface_solutions = output.create_surface_solution(titan,options)
     for _assembly, sol in zip(titan.assembly, surface_solutions): 
         _assembly.prev_surf_data = deepcopy(sol.cell_data)
-        # if hasattr(_assembly, 'surf_data'): _assembly.prev_surf_data = deepcopy(_assembly.surf_data)
+
     # Propagate according to propagator function...
     new_state_vectors, new_derivs = options.dynamics.prop_func(current_state_vectors,state_vectors_prior,derivatives_prior,time_step,titan,options)
     # Update prior derivatives
@@ -518,6 +515,7 @@ def explicit_rk_adapt_wrapper(algorithm, state_vectors,state_vectors_prior,deriv
                                                                                     first_step=titan.rk_params['t_first'],
                                                                                     max_step=titan.rk_params['t_max'])
     if titan.rk_adapt.status == 'running':
+        titan.rk_adapt.max_step = dt
         titan.rk_adapt.step()
     else: 
         print('Propagator concluded with status {} ({} function evaluations)'.format(titan.rk_adapt.status,titan.rk_adapt.nfev))

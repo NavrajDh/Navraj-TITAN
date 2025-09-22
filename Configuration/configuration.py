@@ -122,7 +122,7 @@ class Dynamics():
         self.time_step = time_step
 
         #: [ECEF/Geodetic] Frame of specified input state
-        self.trajectory_frame = 'Geodetic'
+        self.trajectory_frame = 'geodetic'
         #: [str] Name of the propagator to be used in the dynamics (options - euler, ).
         self.propagator = propagator
 
@@ -818,7 +818,7 @@ def read_trajectory(configParser, frame, planet=None):
     """
 
     trajectory = Trajectory()
-    if frame=='geodetic':
+    if frame.lower()=='geodetic':
         trajectory.altitude = get_config_value(configParser, trajectory.altitude, 'Trajectory', 'Altitude', 'float')
         trajectory.velocity = get_config_value(configParser, trajectory.velocity, 'Trajectory', 'Velocity', 'float')
         trajectory.gamma =    get_config_value(configParser, trajectory.gamma, 'Trajectory', 'Flight_path_angle', 'custom', 'angle')
@@ -826,12 +826,12 @@ def read_trajectory(configParser, frame, planet=None):
         trajectory.latitude = get_config_value(configParser, trajectory.latitude, 'Trajectory', 'Latitude', 'custom', 'angle')
         trajectory.longitude =get_config_value(configParser, trajectory.longitude, 'Trajectory', 'Longitude', 'custom', 'angle')
 
-    elif frame=='ECEF' or frame=='ECI':
+    elif frame.lower()=='ecef' or frame.lower()=='eci':
             import pymap3d
             state = get_config_value(configParser, '0,0,0,0,0,0', 'Trajectory', 'State', 'str').split(',')
             state = np.array([float(value) for value in state])
 
-            if frame=='ECI': 
+            if frame.lower()=='eci': 
                 import datetime as dt
                 epoch = get_config_value(configParser, '1970/01/01 01:01:01', 'Trajectory', 'Epoch', 'str')
                 epoch = dt.datetime.strptime(epoch,'%Y/%m/%d %H:%M:%S')
@@ -1093,6 +1093,8 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.t_end = get_config_value(configParser, options.iters*options.dynamics.time_step, 'Time', 'Adaptive_end_time', 'float')
     options.dynamics.dt_initial = get_config_value(configParser, 0.1*options.dynamics.time_step, 'Time', 'Adaptive_dt_init', 'float')
 
+    if not (options.dynamics.propagator=='RK23' or options.dynamics.propagator=='RK45' or options.dynamics.propagator=='DOP853'):
+        options.time_fidelity = 0.0
     if 'adapt' in options.dynamics.propagator.lower(): 
         options.dynamics.acceleration_threshold = get_config_value(configParser, 0.05, 'Time', 'Spin_threshold', 'float')
         options.dynamics.tumbling_criterion = get_config_value(configParser, 0.0, 'Time', 'Tumble_threshold', 'float')

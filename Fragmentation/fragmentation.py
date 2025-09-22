@@ -575,7 +575,7 @@ def fragmentation(titan, options):
                     con_delete = []
 
                     for index, con in enumerate(titan.assembly[it].connectivity):
-                        if con[2] == 0:
+                        if con[2] == 0 and obj.id in con:
                             con_delete.append(index)
                     
                     titan.assembly[it].connectivity = np.delete(titan.assembly[it].connectivity, con_delete, axis = 0)
