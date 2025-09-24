@@ -65,7 +65,12 @@ def loop(options = [], titan = []):
         titan.assembly[0].mass = options.vehicle.mass   
 
     if options.dynamic_plots: plot = dynamic_plots.initialise_figs(titan, options)
-
+    if options.postproc_in_loop is not None: 
+        import numpy as np
+        import pandas as pd
+        import os
+        pp_existing = np.array([])
+        i_time=0
     while titan.iter < options.iters:
         options.high_fidelity_flag = False
 
@@ -100,6 +105,25 @@ def loop(options = [], titan = []):
         
         if options.dynamic_plots:
             for _assembly in titan.assembly: plot = dynamic_plots.update_plot(_assembly, plot, titan.time)
+
+        if options.postproc_in_loop is not None:
+            if not os.path.exists(options.output_folder+'/Dense_surface_solution') and os.path.exists(options.output_folder+'/Data/data.csv'):
+                data = pd.read_csv(options.output_folder+'/Data/data.csv', index_col = False)
+                data_obj = pd.read_csv(options.output_folder+'/Data/data_assembly.csv', index_col = False)
+                iter_interval = np.unique(data['Iter'].to_numpy())
+                iters_to_run = iter_interval[~np.isin(iter_interval,pp_existing)]
+                for iter_value in range(min(iters_to_run), max(iters_to_run)+1, options.output_freq):
+                    pp.generate_visualization(options, data, iter_value, options.postproc_in_loop, filter_name, data_obj)
+                pp_existing = np.hstack((pp_existing,iters_to_run))
+            if os.path.exists(options.output_folder+'/Data/data_smooth.csv'):
+                data_smooth = pd.read_csv(options.output_folder+'/Data/data_smooth.csv')
+                times = np.unique(data_smooth['Time'].to_numpy())
+                times_to_run = times[~np.isin(times, pp_existing)]
+                for time in times_to_run:
+                    pp.generate_visualization(options, data_smooth, np.round(time,6), options.postproc_in_loop,is_dense=True, iter_override=i_time)
+                    i_time+=1
+                pp_existing = np.hstack((pp_existing,times_to_run))
+
 
         titan.iter += 1
         titan.post_event_iter +=1
@@ -179,7 +203,7 @@ if __name__ == "__main__":
     postprocess = args.postprocess
     filter_name = args.filtername
     emissions = args.emissions
-    if postprocess and (postprocess.lower()!="wind" and postprocess.lower()!="ecef"):
-        raise Exception("Postprocess can only be WIND or ECEF")
+    if postprocess and (postprocess.lower()!="wind" and postprocess.lower()!="ecef" and postprocess.lower()!="int"):
+        raise Exception("Postprocess can only be WIND, ECEF or INT")
 
     main(filename = filename, postprocess = postprocess, filter_name = filter_name, emissions = emissions)

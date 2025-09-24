@@ -206,6 +206,7 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
     Te = np.array([])
     mDotVapor = np.array([])
     mDotMelt = np.array([])
+    debug_alpha = np.array([])
 
 
     for assembly in titan.assembly:
@@ -225,6 +226,7 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
         Te = assembly.aerothermo.Te
         mDotVapor = np.zeros(len(assembly.mesh.facets))
         mDotMelt  = np.zeros(len(assembly.mesh.facets))
+        debug_alpha = assembly.aerothermo.debug_alpha
         if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
             mDotVapor = assembly.mDotVapor
             mDotMelt = assembly.mDotMelt
@@ -242,6 +244,7 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
                       "temperature": [temperature],
                       "shear": [shear],
                       "theta": [theta],
+                      "debug_alpha" : [debug_alpha]
                       #"Enthalpy BLE": [he],
                       #"Enthalpy Wall": [hw],
                       #"Temperatue BLE": [Te],
@@ -287,6 +290,7 @@ def create_surface_solution(titan, options):
     #Te = np.array([])
     mDotVapor = np.array([])
     mDotMelt = np.array([])
+    debug_alpha = np.array([])
 
 
     for assembly in titan.assembly:
@@ -304,6 +308,7 @@ def create_surface_solution(titan, options):
         # he = assembly.aerothermo.he
         # hw = assembly.aerothermo.hw
         # Te = assembly.aerothermo.Te
+        debug_alpha = assembly.aerothermo.debug_alpha
 
         if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
             mDotVapor = np.zeros(len(assembly.mesh.facets))
@@ -324,6 +329,7 @@ def create_surface_solution(titan, options):
                       "temperature": [temperature],
                       "shear": [shear],
                       "theta": [theta],
+                      "debug_alpha" : [debug_alpha]
                       #"Enthalpy BLE": [he],
                       #"Enthalpy Wall": [hw],
                       #"Temperatue BLE": [Te],
@@ -359,6 +365,7 @@ def update_surface_solution(titan,options,solutions,overwrite=None):
     #Te = np.array([])
     mDotVapor = np.array([])
     mDotMelt = np.array([])
+    debug_alpha = np.array([])
     for i_assem, _assembly in enumerate(titan.assembly):
             # points = assembly.mesh.nodes - assembly.mesh.surface_displacement
         # facets = assembly.mesh.facets
@@ -369,6 +376,7 @@ def update_surface_solution(titan,options,solutions,overwrite=None):
             
             temperature = overwrite[i_assem]['temperature'][:]
             theta = overwrite[i_assem]['theta'][:]
+            debug_alpha = overwrite[i_assem]['debug_alpha'][:]
         else:
             pressure = _assembly.aerothermo.pressure
             heatflux = _assembly.aerothermo.heatflux
@@ -381,6 +389,7 @@ def update_surface_solution(titan,options,solutions,overwrite=None):
             # he = assembly.aerothermo.he
             # hw = assembly.aerothermo.hw
             # Te = assembly.aerothermo.Te
+            debug_alpha = _assembly.aerothermo.debug_alpha
         displacement = _assembly.mesh.surface_displacement
 
         if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
@@ -401,6 +410,7 @@ def update_surface_solution(titan,options,solutions,overwrite=None):
         solutions[i_assem].cell_data["shear"][:] = shear
         solutions[i_assem].cell_data["theta"][:] = theta
         solutions[i_assem].point_data["displacement"][:] = displacement
+        solutions[i_assem].cell_data["debug_alpha"][:] = debug_alpha
         return solutions
 
 def write_surface_solution(options,solutions,IDS,iter_value,folder='Surface_solution'):
@@ -408,8 +418,8 @@ def write_surface_solution(options,solutions,IDS,iter_value,folder='Surface_solu
         folder_path = options.output_folder+'/' + folder + '/ID_'+str(assembly_id)
         Path(folder_path).mkdir(parents=True, exist_ok=True)
 
-        vol_mesh_filepath = f"{folder_path}/solution_iter_{str(iter_value).zfill(3)}.vtk"
-        meshio.write(vol_mesh_filepath, trimesh, file_format="vtk")
+        vol_mesh_filepath = f"{folder_path}/solution_iter_{str(iter_value).zfill(3)}.xdmf"
+        meshio.write(vol_mesh_filepath, trimesh, file_format="xdmf")
 
 def generate_surface_solution_emissions(titan, options, iter_value, folder = 'Surface_solution'):
 

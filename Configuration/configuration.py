@@ -707,6 +707,7 @@ class Options():
             print('Mesh loading failed at recursion limit: {}'.format(recursion_limit))
             recursion_limit=int(np.ceil(1.1*recursion_limit))
             sys.setrecursionlimit(recursion_limit)
+            titan = pickle.load(infile)
         infile.close()
 
         return titan
@@ -909,11 +910,19 @@ def read_geometry(configParser, options):
             for name, value in configParser.items(section):
                 value = value.replace('[','').replace(']','').replace(' ','').split(",")
                 object_type = [s for s in value if "type=" in s.lower()][0].split("=")[1]
+                try:
+                    alpha = float([s for s in value if "alpha=" in s.lower()][0].split("=")[1])
+                except:
+                    alpha = 1.0
 
                 if object_type == 'Primitive':
                     object_path = path+[s for s in value if "name=" in s.lower()][0].split("=")[1]
                     material= [s for s in value if "material=" in s.lower()][0].split("=")[1]
-                    
+                    try:
+                        enclosure = int([s for s in value if "enclosure=" in s.lower()][0].split("=")[1])
+                        print('Warning! Enclosure system is unverified and still in active development!!')
+                    except:
+                        enclosure = 0
 
                     try:
                         inner_stl_file = [s for s in value if "inner_stl=" in s.lower()][0].split("=")[1]
@@ -955,7 +964,8 @@ def read_geometry(configParser, options):
                         print('Need to set up BLOOM if using PATO!'); exit()
                     
                     objects.insert_component(filename = object_path, file_type = object_type, trigger_type = trigger_type, trigger_value = float(trigger_value), 
-                        fenics_bc_id = fenics_bc_id, inner_stl = inner_path, material = material, temperature = temperature, options = options, global_ID = obj_global_ID, bloom_config = bloom)
+                                             fenics_bc_id = fenics_bc_id, inner_stl = inner_path, material = material, temperature = temperature, 
+                                             options = options, global_ID = obj_global_ID, bloom_config = bloom, enclosure=enclosure, alpha=alpha)
 
                 if object_type == 'Joint':
                     object_path = path+[s for s in value if "name=" in s.lower()][0].split("=")[1]
@@ -998,7 +1008,9 @@ def read_geometry(configParser, options):
                         bloom = [False, 0, 0, 0]              
 
                     objects.insert_component(filename = object_path, file_type = object_type, inner_stl = inner_path,
-                                             trigger_type = trigger_type, trigger_value = float(trigger_value), fenics_bc_id = fenics_bc_id, material = material, temperature = temperature, options = options, global_ID = obj_global_ID, bloom_config = bloom) 
+                                             trigger_type = trigger_type, trigger_value = float(trigger_value), 
+                                             fenics_bc_id = fenics_bc_id, material = material, temperature = temperature, 
+                                             options = options, global_ID = obj_global_ID, bloom_config = bloom, alpha=alpha) 
 
 
                 print('bloom:', bloom)
@@ -1068,6 +1080,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamic_plots  = get_config_value(configParser, False, 'Options', 'Plot', 'boolean')
     options.time_fidelity = get_config_value(configParser, options.time_fidelity, 'Options', 'Time_fidelity','float')
     options.write_dense_solutions = get_config_value(configParser, False, 'Options','Dense_solutions', 'boolean' )
+    options.postproc_in_loop = get_config_value(configParser, None, 'Options', 'Postprocess_in_loop','str')
     options.time_counter   = 0
 
 
