@@ -1097,9 +1097,11 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.time_step  = get_config_value(configParser, options.dynamics.time_step, 'Time', 'Time_step', 'float')
     options.dynamics.propagator = get_config_value(configParser, options.dynamics.propagator, 'Time', 'Time_integration', 'str')
 
-    if options.dynamics.propagator=='help': 
-        print(options.dynamics.prop_warning)
-        options.dynamics.propagator='euler'
+    if options.dynamics.propagator=='help':
+        options.dynamics.propagator = get_config_value(configParser, options.dynamics.propagator, 'Time', 'Propagator', 'str')
+        if options.dynamics.propagator=='help':
+            print(options.dynamics.prop_warning)
+            options.dynamics.propagator='euler'
 
     options.dynamics.prop_func =  propagation.get_integrator_func(options,options.dynamics.propagator.lower())
     options.dynamics.dt_max = get_config_value(configParser, 10*options.dynamics.time_step, 'Time', 'Adaptive_dt_max', 'float')

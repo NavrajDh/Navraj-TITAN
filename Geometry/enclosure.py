@@ -6,11 +6,11 @@ from meshio import Mesh
 # based upon its enclosure state, which is equivalent to ~is_enclosed 
 def check_enclosure(assembly_list,options, assembly_index,debug_iter=0):
     # Assembly of interest
-    do_raytrace = False
     AoI = assembly_list[assembly_index]
     enclosure_list = np.array([component.enclosure for component in AoI.objects])
     # If any part of the assembly is unenclosed we must simulate it
     if np.any(enclosure_list>=0): return True
+    do_raytrace = False
     enclosures = np.unique(enclosure_list)
     for enclosed in enclosures:
         found_assembly = False
