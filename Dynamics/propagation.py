@@ -1,8 +1,10 @@
+import os
 from Dynamics import dynamics, frames, collision
 from Aerothermo import aerothermo
 from Forces import forces
 import pymap3d
 import numpy as np
+import pandas as pd
 from scipy.spatial.transform import Rotation as Rot
 from scipy.special import erf
 from scipy import integrate
@@ -10,8 +12,7 @@ from scipy.stats import uniform_direction
 from functools import partial
 from Output import output
 from warnings import warn
-from copy import copy
-
+from copy import copy, deepcopy
 ## Current implented integrators (define in cfg under [Time] as Time_integration='')...
 
 ## Constant time-step methods  
@@ -33,11 +34,9 @@ def propagate(titan, options):
     #  a 13-D state vector of form [Position(x/y/z),Velocity(u/v/w),Quaternion(w/i/j/k),Angular velocity(roll_vel,pitch_vel,yaw_vel)]
     #  a propagator specified by options.dynamics.propagator
 
-    #TODO: Manage collision handling properly
     if options.collision.flag and len(titan.assembly)>1:
         flag_collision, __ = collision.check_collision(titan, options, 0)
         if flag_collision: collision.collision_physics(titan, options)
-        #if flag_collision: collision.collision_physics_simultaneous(titan, options)
 
     # If we go to switch.py or su2.py, Because we call deepcopy() function, we need to rebuild
     #the collision mesh
@@ -48,12 +47,15 @@ def propagate(titan, options):
     # Retrieve state vectors from each assembly object...
     current_state_vectors, state_vectors_prior, derivatives_prior = collect_state_vectors(titan, options)
 
-    ## NB: Highly unsure if I've correctly applied this collision implementation, see earlier todo
-    time_step = options.dynamics.time_step
+    time_step = options.dynamics.time_step if not hasattr(titan,'rk_adapt') else options.dynamics.dt_max
     if options.collision.flag and len(titan.assembly)>1:
         #Check collision for future time intervals with respect to current time-step velocity
         __, time_step = collision.check_collision(titan, options, time_step)
     
+    surface_solutions = output.create_surface_solution(titan,options)
+    for _assembly, sol in zip(titan.assembly, surface_solutions): 
+        _assembly.prev_surf_data = deepcopy(sol.cell_data)
+
     # Propagate according to propagator function...
     new_state_vectors, new_derivs = options.dynamics.prop_func(current_state_vectors,state_vectors_prior,derivatives_prior,time_step,titan,options)
     # Update prior derivatives
@@ -65,6 +67,7 @@ def propagate(titan, options):
             _assembly.unmodded_angles  = np.array([getattr(_assembly,angle) for angle in angle_names])
     # Writes the output data
     output.write_output_data(titan = titan, options = options)
+    if options.time_fidelity>0.0: write_dense_output(titan, options)
     # Communicate new vectors to assemblies
     for i_assem, _assembly in enumerate(titan.assembly):  
         update_dynamic_attributes(_assembly,new_state_vectors[i_assem],options)
@@ -93,9 +96,11 @@ def state_equation(titan,options,time,state_vectors):
         state_vectors = np.reshape(state_vectors,[-1,13])
 
     # First we communicate the state vector to assembly attributes
-    if titan.iter>0:
-        for _assembly, state_vector in zip(titan.assembly,state_vectors):
-            update_dynamic_attributes(_assembly,state_vector,options)
+    # if titan.iter>0:
+    unaltered_states = []
+    for _assembly, state_vector in zip(titan.assembly,state_vectors):
+        unaltered_states.append(_assembly.state_vector)
+        update_dynamic_attributes(_assembly,state_vector,options)
     
     # Then business as usual for computing forces...
     
@@ -127,15 +132,19 @@ def state_equation(titan,options,time,state_vectors):
                                    angularDerivatives.ddroll,
                                    angularDerivatives.ddpitch,
                                    angularDerivatives.ddyaw,])
-        
+    
+    # Finally reset the Dynamic state to be controlled by the chosen propagator
+    for _assembly, return_state in zip(titan.assembly, unaltered_states):
+        update_dynamic_attributes(_assembly,return_state,options,force=True)
+
     if reshape_flat: d_dt_state_vectors = np.array(d_dt_state_vectors).flatten()
     return d_dt_state_vectors, aero_states
 
-def update_dynamic_attributes(assembly,state_vector,options):
+def update_dynamic_attributes(assembly,state_vector,options, force=False, return_output_array=False):
     # This function takes an ECEF/BODY state vector and applies it to all the necessary attributes of a TITAN assembly
     # This ensures the new dynamics code plays nicely with other parts of TITAN.
 
-    if not np.array_equal(assembly.state_vector,state_vector): # Only need to update if state vector is different
+    if not np.array_equal(assembly.state_vector,state_vector) or force: # Only need to update if state vector is different
         # Update ECEF state...
         assembly.position[0] = state_vector[0]
         assembly.position[1] = state_vector[1]
@@ -184,7 +193,20 @@ def update_dynamic_attributes(assembly,state_vector,options):
 
         assembly.aoa = np.arctan2(Vz_B,Vx_B)
         assembly.slip = np.arcsin(Vy_B/np.sqrt(Vx_B**2 + Vy_B**2 +  Vz_B**2))
-
+        angular_momentum = assembly.inertia @ np.array([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel] )
+    if return_output_array: return np.array([assembly.id,assembly.mass,assembly.trajectory.altitude,
+                                             assembly.trajectory.velocity,assembly.trajectory.gamma*180/np.pi,assembly.trajectory.chi*180/np.pi,
+                                             assembly.trajectory.latitude*180/np.pi,assembly.trajectory.longitude*180/np.pi,
+                                             assembly.aoa*180/np.pi,assembly.slip*180/np.pi,
+                                             assembly.position[0],assembly.position[1],assembly.position[2],
+                                             assembly.velocity[0],assembly.velocity[1],assembly.velocity[2],
+                                             assembly.COG[0],assembly.COG[1],assembly.COG[2],
+                                             assembly.roll*180/np.pi,assembly.pitch*180/np.pi,assembly.yaw*180/np.pi,
+                                             assembly.unmodded_angles[0]*180/np.pi,assembly.unmodded_angles[1]*180/np.pi,assembly.unmodded_angles[2]*180/np.pi, 
+                                             assembly.roll_vel*180/np.pi,assembly.pitch_vel*180/np.pi,assembly.yaw_vel*180/np.pi,
+                                             np.linalg.norm([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])*180/np.pi,
+                                             angular_momentum[0], angular_momentum[1], angular_momentum[2], np.linalg.norm(angular_momentum),
+                                             assembly.quaternion[3],assembly.quaternion[0],assembly.quaternion[1],assembly.quaternion[2]])
     return assembly
 
 def construct_state_vector(assembly):
@@ -247,6 +269,73 @@ def append_derivatives(titan,options,new_derivs):
         if n_derivs==options.dynamics.n_derivs_to_hold and len(_assembly.derivs_prior)>0:
             _assembly.derivs_prior.pop(0)
         _assembly.derivs_prior.append(new_derivs[i_assem])
+
+def write_dense_output(titan, options):
+    ## This function writes outputs of the previous iteration as a dense output as specified by the time fidelity option
+    true_time = titan.time
+    times = np.arange(titan.last_output_time+options.time_fidelity,true_time+titan.rk_adapt.step_size, options.time_fidelity)
+    ## Some sanity checks
+    times = times[np.where(times>true_time)]
+    times = times[np.where(times<true_time+titan.rk_adapt.step_size)]
+    if options.write_dense_solutions: surface_solutions = output.create_surface_solution(titan,options)
+    if len(times)>0:
+        prior_states = copy(np.reshape(titan.rk_adapt.y,[-1,13]))
+        interpolant = titan.rk_adapt.dense_output()
+        times += interpolant.t_min - true_time
+        n_assem = len(titan.assembly)
+        data_array = np.zeros([len(times)*n_assem,38])
+        
+        # Some more sanity checks
+        if not np.min(times)>=interpolant.t_min:
+            warn('Extrapolating interpolant backwards! Past valid t={} to t={}'.format(interpolant.t_min,np.min(times)))
+        if not np.max(times)<=interpolant.t_max:
+            warn('Extrapolating interpolant forwards! Past valid t={} to t={}'.format(interpolant.t_max,np.max(times)))
+
+        timestep_func = partial(generate_dense_timestep,titan.assembly,options,interpolant)
+
+        for i_time, time in enumerate(times):
+            timestep_data, overwrite = timestep_func(time)
+            data_array[i_time*n_assem:i_time*n_assem+n_assem,:] = timestep_data
+            if len(overwrite)>0 and options.write_dense_solutions: 
+                output.update_surface_solution(titan,options,surface_solutions,overwrite)
+            if options.write_dense_solutions: 
+                output.write_surface_solution(options,surface_solutions,[_assembly.id for _assembly in titan.assembly],
+                                          np.round(time-interpolant.t_min + true_time,6),folder='Dense_surface_solution')
+            
+        for _assembly, state in zip(titan.assembly,prior_states): update_dynamic_attributes(_assembly, state, options)
+
+        header = [['Time', 'Assembly_ID','Mass','Altitude','Velocity',
+                'FlightPathAngle','HeadingAngle','Latitude','Longitude',
+                'AngleAttack','AngleSideslip','ECEF_X','ECEF_Y','ECEF_Z',
+                'ECEF_vU','ECEF_vV','ECEF_vW','BODY_COM_X','BODY_COM_Y',
+                'BODY_COM_Z','Roll','Pitch','Yaw','distRoll','distPitch',
+                'distYaw','velRoll','velPitch','velYaw','magnitudeOmega',
+                'angularMomentum_x','angularMomentum_y','angularMomentum_z',
+                'magnitudeAngularMomentum','Quat_w','Quat_x','Quat_y','Quat_z']]
+        data_array[:,0] += true_time - interpolant.t_min
+        data_array[:,0] = np.round(data_array[:,0],6)
+        df = pd.DataFrame(data_array,columns=header)
+        header = True if not os.path.exists(options.output_folder + '/Data/'+ 'data_smooth.csv') else False
+        titan.last_output_time=np.max(times)-interpolant.t_min + true_time
+        df.to_csv(options.output_folder + '/Data/'+ 'data_smooth.csv',header=header,mode='a',index=False)
+
+def generate_dense_timestep(assemblies, options, interpolant, time):
+    
+    n_assem = len(assemblies)
+    state_vectors = np.reshape(interpolant(time),[-1,13])
+    data_array = np.zeros([n_assem,38])
+    data_array[:,0] = np.array([time for _ in range(n_assem)])
+    overwrite_solutions = []
+    for i_assem, _assembly in enumerate(assemblies): 
+        data_array[i_assem,1:] = update_dynamic_attributes(_assembly, state_vectors[i_assem], options, return_output_array=True)
+        if hasattr(_assembly,'prev_surf_data'):
+            overwrite_data = copy(_assembly.prev_surf_data)
+            lerp_value = (time-interpolant.t_min)/(interpolant.t_max - interpolant.t_min)
+            for field in overwrite_data.keys():
+                overwrite_data[field][:] = (1-lerp_value)*np.array(_assembly.prev_surf_data[field][:]) + lerp_value * getattr(_assembly.aerothermo,field)
+            overwrite_solutions.append(overwrite_data)
+    return data_array, overwrite_solutions
+    
 
 def get_integrator_func(options, choice):
 
@@ -406,28 +495,31 @@ def explicit_rk_adapt_wrapper(algorithm, state_vectors,state_vectors_prior,deriv
     elif not np.shape(titan.rk_params['state'])==np.shape(np.array(state_vectors).flatten()): recompute_params = True
     else: recompute_params = False
     if recompute_params: 
-        if titan.time>0: titan.time-=dt
+        if titan.post_event_iter>0: titan.time-=dt
         titan.rk_params = {'time'    : titan.time, 
                            'state'   : np.array(state_vectors).flatten(),
                            't_end'   : options.dynamics.t_end, 
-                           't_first' : options.dynamics.dt_initial,  # Prefer a small initial timestep to combat discontinuities at fragmentation
-                           't_max'   : options.dynamics.dt_max}
+                           't_first' : options.dynamics.dt_initial,  # Prefer a small initial timestep to combat discontinuities
+                           't_max'   : options.dynamics.dt_max,
+                           'dense'   : options.time_fidelity>0}
 
     if not hasattr(titan, 'rk_fun')   or recompute_params: 
         def rk_wrapper(titan,options,time,vector): return state_equation(titan,options,time,vector)[0]
         titan.rk_fun=partial(rk_wrapper,titan,options)
+
     if not hasattr(titan, 'rk_adapt') or recompute_params: titan.rk_adapt=algorithm(fun=titan.rk_fun,
                                                                                     t0=titan.rk_params['t_first'],
                                                                                     y0=titan.rk_params['state'],
                                                                                     t_bound=titan.rk_params['t_end'],
                                                                                     first_step=titan.rk_params['t_first'],
                                                                                     max_step=titan.rk_params['t_max'])
-
     if titan.rk_adapt.status == 'running':
+        titan.rk_adapt.max_step = dt
         titan.rk_adapt.step()
     else: 
         print('Propagator concluded with status {} ({} function evaluations)'.format(titan.rk_adapt.status,titan.rk_adapt.nfev))
         titan.end_trigger = True
+
     titan.delta_t = titan.rk_adapt.step_size
     return np.reshape(titan.rk_adapt.y,[-1,13]), None
 
@@ -504,7 +596,6 @@ def proj_area_adapt_wrapper(N, state_vectors,state_vectors_prior,derivatives_pri
 
 
 def explicit_rk_N(N,state_vectors,state_vectors_prior,derivatives_prior,dt,titan,options):
-    new_state_vectors = []
     k_n = []
     for i_k in range(RK_N_actual[str(N)]):
         k_state_vectors = np.array(state_vectors)
@@ -580,3 +671,11 @@ def quaternion_conjugate(q): return np.array([-q[0],-q[1],-q[2],q[3]])
 def quaternion_normalize(q):
     norm = np.linalg.norm(q)
     return q/norm
+
+def quaternion_to_matrix(q):
+    return np.array([
+        [1 - 2 * (q[1]**2 + q[2]**2),     2 * (q[0] * q[1] - q[3] * q[2]), 2 * (q[0] * q[2] + q[3] * q[1]), 0],
+        [2 * (q[0] * q[1] + q[3] * q[2]), 1 - 2 * (q[0]**2 + q[2]**2),     2 * (q[1] * q[2] - q[3] * q[0]), 0],
+        [2 * (q[0] * q[2] - q[3] * q[1]), 2 * (q[1] * q[2] + q[3] * q[0]), 1 - 2 * (q[0]**2 + q[1]**2),     0],
+        [0,                               0,                               0,                               1]
+    ])

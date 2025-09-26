@@ -121,6 +121,8 @@ class Dynamics():
         #: [seconds] Value of the time-step.
         self.time_step = time_step
 
+        #: [ECEF/Geodetic] Frame of specified input state
+        self.trajectory_frame = 'geodetic'
         #: [str] Name of the propagator to be used in the dynamics (options - euler, ).
         self.propagator = propagator
 
@@ -547,7 +549,10 @@ class Options():
         self.save_freq = 500
 
         #:[int] Frequency of generating the output surface solution [per number of iterations]
-        self.output_freq = 500        
+        self.output_freq = 500
+
+        #:[float] Maximal time between dynamical outputs written to data_smooth.csv (seconds), disabled if 0.0
+        self.time_fidelity = 0.0    
 
         #: [int] Current iteration
         self.current_iter = 0
@@ -702,6 +707,7 @@ class Options():
             print('Mesh loading failed at recursion limit: {}'.format(recursion_limit))
             recursion_limit=int(np.ceil(1.1*recursion_limit))
             sys.setrecursionlimit(recursion_limit)
+            titan = pickle.load(infile)
         infile.close()
 
         return titan
@@ -797,7 +803,7 @@ def check_initial_condition_array(initial_condition):
 
     return np.array(ids), np.array(condition)
 
-def read_trajectory(configParser):
+def read_trajectory(configParser, frame, planet=None):
     """
     Read the Trajectory specified in the config file
 
@@ -813,14 +819,62 @@ def read_trajectory(configParser):
     """
 
     trajectory = Trajectory()
+    if frame.lower()=='geodetic':
+        trajectory.altitude = get_config_value(configParser, trajectory.altitude, 'Trajectory', 'Altitude', 'float')
+        trajectory.velocity = get_config_value(configParser, trajectory.velocity, 'Trajectory', 'Velocity', 'float')
+        trajectory.gamma =    get_config_value(configParser, trajectory.gamma, 'Trajectory', 'Flight_path_angle', 'custom', 'angle')
+        trajectory.chi =      get_config_value(configParser, trajectory.chi, 'Trajectory', 'Heading_angle', 'custom', 'angle')
+        trajectory.latitude = get_config_value(configParser, trajectory.latitude, 'Trajectory', 'Latitude', 'custom', 'angle')
+        trajectory.longitude =get_config_value(configParser, trajectory.longitude, 'Trajectory', 'Longitude', 'custom', 'angle')
 
-    trajectory.altitude = get_config_value(configParser, trajectory.altitude, 'Trajectory', 'Altitude', 'float')
-    trajectory.velocity = get_config_value(configParser, trajectory.velocity, 'Trajectory', 'Velocity', 'float')
-    trajectory.gamma =    get_config_value(configParser, trajectory.gamma, 'Trajectory', 'Flight_path_angle', 'custom', 'angle')
-    trajectory.chi =      get_config_value(configParser, trajectory.chi, 'Trajectory', 'Heading_angle', 'custom', 'angle')
-    trajectory.latitude = get_config_value(configParser, trajectory.latitude, 'Trajectory', 'Latitude', 'custom', 'angle')
-    trajectory.longitude =get_config_value(configParser, trajectory.longitude, 'Trajectory', 'Longitude', 'custom', 'angle')
-    
+    elif frame.lower()=='ecef' or frame.lower()=='eci':
+            import pymap3d
+            state = get_config_value(configParser, '0,0,0,0,0,0', 'Trajectory', 'State', 'str').split(',')
+            state = np.array([float(value) for value in state])
+
+            if frame.lower()=='eci': 
+                import datetime as dt
+                epoch = get_config_value(configParser, '1970/01/01 01:01:01', 'Trajectory', 'Epoch', 'str')
+                epoch = dt.datetime.strptime(epoch,'%Y/%m/%d %H:%M:%S')
+                state[:3] = pymap3d.eci2ecef(state[0],state[1],state[2],time=epoch)
+                rotMatrix = np.transpose([pymap3d.eci2ecef(1,0,0,epoch),
+                                           pymap3d.eci2ecef(0,1,0,epoch),
+                                           pymap3d.eci2ecef(0,0,1,epoch)])
+                state[3:] = rotMatrix @ state[3:] -np.cross([0,0,planet.omega()],state[:3])
+
+
+            [latitude, longitude, altitude] = pymap3d.ecef2geodetic(state[0], state[1], state[2],
+                                                                    ell=pymap3d.Ellipsoid(semimajor_axis = planet.ellipsoid()['a'], 
+                                                                                          semiminor_axis = planet.ellipsoid()['b']),
+                                                                    deg = False)
+            
+            [vEast, vNorth, vUp] = pymap3d.uvw2enu(state[3], state[4], state[5], latitude, longitude, deg=False)
+            velocity = np.linalg.norm(state[3:])
+            gamma = np.arcsin(np.dot(state[:3], state[3:])/(np.linalg.norm(state[:3])*velocity))
+            chi = np.arctan2(vEast,vNorth)
+
+            trajectory.altitude  =  altitude
+            trajectory.velocity  =  velocity
+            trajectory.gamma     =     gamma
+            trajectory.chi       =       chi
+            trajectory.latitude  =  latitude
+            trajectory.longitude = longitude
+
+            print('Converted state vector {}\nInto Geodetic trajectory with... \
+                  \nAltitude          | {}km\
+                  \nLatitude          | {}°\
+                  \nLongitude         | {}°\
+                  \nVelocity          | {}km/s\
+                  \nFlight Path Angle | {}°\
+                  \nHeading Angle     | {}°'.format(
+                      state.tolist(),
+                      np.round(altitude/1000,4),
+                      np.round(latitude*180/np.pi,4),
+                      np.round(longitude*180/np.pi,4),
+                      np.round(velocity/1000,4),
+                      np.round(gamma*180/np.pi,4),
+                      np.round(chi*180/np.pi,4),
+                  ))
     return trajectory
 
 def read_geometry(configParser, options):
@@ -856,11 +910,19 @@ def read_geometry(configParser, options):
             for name, value in configParser.items(section):
                 value = value.replace('[','').replace(']','').replace(' ','').split(",")
                 object_type = [s for s in value if "type=" in s.lower()][0].split("=")[1]
+                try:
+                    alpha = float([s for s in value if "alpha=" in s.lower()][0].split("=")[1])
+                except:
+                    alpha = 1.0
 
                 if object_type == 'Primitive':
                     object_path = path+[s for s in value if "name=" in s.lower()][0].split("=")[1]
                     material= [s for s in value if "material=" in s.lower()][0].split("=")[1]
-                    
+                    try:
+                        enclosure = int([s for s in value if "enclosure=" in s.lower()][0].split("=")[1])
+                        print('Warning! Enclosure system is unverified and still in active development!!')
+                    except:
+                        enclosure = 0
 
                     try:
                         inner_stl_file = [s for s in value if "inner_stl=" in s.lower()][0].split("=")[1]
@@ -902,7 +964,8 @@ def read_geometry(configParser, options):
                         print('Need to set up BLOOM if using PATO!'); exit()
                     
                     objects.insert_component(filename = object_path, file_type = object_type, trigger_type = trigger_type, trigger_value = float(trigger_value), 
-                        fenics_bc_id = fenics_bc_id, inner_stl = inner_path, material = material, temperature = temperature, options = options, global_ID = obj_global_ID, bloom_config = bloom)
+                                             fenics_bc_id = fenics_bc_id, inner_stl = inner_path, material = material, temperature = temperature, 
+                                             options = options, global_ID = obj_global_ID, bloom_config = bloom, enclosure=enclosure, alpha=alpha)
 
                 if object_type == 'Joint':
                     object_path = path+[s for s in value if "name=" in s.lower()][0].split("=")[1]
@@ -945,7 +1008,9 @@ def read_geometry(configParser, options):
                         bloom = [False, 0, 0, 0]              
 
                     objects.insert_component(filename = object_path, file_type = object_type, inner_stl = inner_path,
-                                             trigger_type = trigger_type, trigger_value = float(trigger_value), fenics_bc_id = fenics_bc_id, material = material, temperature = temperature, options = options, global_ID = obj_global_ID, bloom_config = bloom) 
+                                             trigger_type = trigger_type, trigger_value = float(trigger_value), 
+                                             fenics_bc_id = fenics_bc_id, material = material, temperature = temperature, 
+                                             options = options, global_ID = obj_global_ID, bloom_config = bloom, alpha=alpha) 
 
 
                 print('bloom:', bloom)
@@ -1013,6 +1078,9 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.collision.flag = get_config_value(configParser, False, 'Options', 'Collision', 'boolean')
     options.material_file  = get_config_value(configParser, 'database_material.xml', 'Options', 'Material_file', 'str')
     options.dynamic_plots  = get_config_value(configParser, False, 'Options', 'Plot', 'boolean')
+    options.time_fidelity = get_config_value(configParser, options.time_fidelity, 'Options', 'Time_fidelity','float')
+    options.write_dense_solutions = get_config_value(configParser, False, 'Options','Dense_solutions', 'boolean' )
+    options.postproc_in_loop = get_config_value(configParser, None, 'Options', 'Postprocess_in_loop','str')
     options.time_counter   = 0
 
 
@@ -1029,15 +1097,19 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.time_step  = get_config_value(configParser, options.dynamics.time_step, 'Time', 'Time_step', 'float')
     options.dynamics.propagator = get_config_value(configParser, options.dynamics.propagator, 'Time', 'Time_integration', 'str')
 
-    if options.dynamics.propagator=='help': 
-        print(options.dynamics.prop_warning)
-        options.dynamics.propagator='euler'
+    if options.dynamics.propagator=='help':
+        options.dynamics.propagator = get_config_value(configParser, options.dynamics.propagator, 'Time', 'Propagator', 'str')
+        if options.dynamics.propagator=='help':
+            print(options.dynamics.prop_warning)
+            options.dynamics.propagator='euler'
 
     options.dynamics.prop_func =  propagation.get_integrator_func(options,options.dynamics.propagator.lower())
     options.dynamics.dt_max = get_config_value(configParser, 10*options.dynamics.time_step, 'Time', 'Adaptive_dt_max', 'float')
     options.dynamics.t_end = get_config_value(configParser, options.iters*options.dynamics.time_step, 'Time', 'Adaptive_end_time', 'float')
     options.dynamics.dt_initial = get_config_value(configParser, 0.1*options.dynamics.time_step, 'Time', 'Adaptive_dt_init', 'float')
 
+    if not (options.dynamics.propagator=='RK23' or options.dynamics.propagator=='RK45' or options.dynamics.propagator=='DOP853'):
+        options.time_fidelity = 0.0
     if 'adapt' in options.dynamics.propagator.lower(): 
         options.dynamics.acceleration_threshold = get_config_value(configParser, 0.05, 'Time', 'Spin_threshold', 'float')
         options.dynamics.tumbling_criterion = get_config_value(configParser, 0.0, 'Time', 'Tumble_threshold', 'float')
@@ -1047,7 +1119,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     options.dynamics.ignore_mach = get_config_value(configParser, 0.0, 'Time','Debug_mach_cull','float')
     options.dynamics.ignore_mass = get_config_value(configParser, 0.0, 'Time','Debug_mass_cull','float')
     options.dynamics.ignore_obj  = get_config_value(configParser, '','Time','Debug_obj_cull', 'str').split(',')
-    
+    options.dynamics.ignore_obj = [ignore.strip() for ignore in options.dynamics.ignore_obj]
     #Read Thermal options
     options.thermal.ablation       = get_config_value(configParser, False, 'Thermal', 'Ablation', 'boolean')
     if options.thermal.ablation:
@@ -1092,6 +1164,8 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     #Read meshing options
     options.meshing.far_size  = get_config_value(configParser, 0.5, 'Mesh', 'Far_size', 'float')
     options.meshing.surf_size = get_config_value(configParser, 100, 'Mesh', 'Surf_size', 'float')
+    options.meshing.recursion = get_config_value(configParser, sys.getrecursionlimit(), 'Mesh', 'Recursion_limit', 'int')
+    sys.setrecursionlimit(options.meshing.recursion)
 
     #Read Freestream options
     options.freestream.model =  get_config_value(configParser, options.freestream.model, 'Freestream', 'Model', 'str')
@@ -1192,7 +1266,8 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
 
     else:
         #Read the initial trajectory details
-        trajectory = read_trajectory(configParser)
+        options.dynamics.trajectory_frame = get_config_value(configParser, options.dynamics.trajectory_frame, 'Trajectory', 'Frame', 'str')
+        trajectory = read_trajectory(configParser, options.dynamics.trajectory_frame, options.planet)
 
         if options.load_mesh:
             titan = options.read_mesh()
@@ -1232,7 +1307,7 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
     if options.collision.flag:
         for assembly in titan.assembly: collision.generate_collision_mesh(assembly, options)
         collision.generate_collision_handler(titan, options)
-
+    if options.time_fidelity>0.0: titan.last_output_time=titan.time
     ### if options.FENICS:
     ###     fenics = TITAN.FENICS()
     ### else:

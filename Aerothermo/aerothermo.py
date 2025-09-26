@@ -23,6 +23,7 @@ from Dynamics.frames import *
 from scipy import special
 from copy import copy
 from Aerothermo import su2, switch, sparta
+from Geometry.enclosure import check_enclosure
 from scipy.interpolate import interp1d, PchipInterpolator
 from scipy.spatial.transform import Rotation as Rot
 import trimesh
@@ -319,7 +320,7 @@ def compute_aerothermo(titan, options):
         mix_properties.compute_stagnation(assembly.freestream, options.freestream)
 
     if options.fidelity.lower() == 'low':
-        compute_low_fidelity_aerothermo(titan.assembly, options)
+        compute_low_fidelity_aerothermo(titan.assembly, options, titan.iter)
     elif options.fidelity.lower() == 'high':
 
         if  (assembly.freestream.knudsen <= options.aerothermo.knc_pressure):
@@ -419,7 +420,7 @@ def compute_aerothermodynamics(assembly, obj, index, flow_direction, options):
         assembly.aerothermo.heatflux[index] = aerothermodynamics_module_ice_giants(assembly, index, flow_direction, options)
 
 
-def compute_low_fidelity_aerothermo(assembly, options) :
+def compute_low_fidelity_aerothermo(assembly, options, iteration):
     """
     Low-fidelity aerothermo computation
 
@@ -453,8 +454,12 @@ def compute_low_fidelity_aerothermo(assembly, options) :
         _assembly.quaternion_prev = _assembly.quaternion #to be used in thermal model
 
         #_assembly.freestream.per_facet_mach = compute_per_facet_mach(_assembly,flow_direction)
-
-        index = ray_trace(_assembly,flow_direction,n, options)
+        if check_enclosure(assembly,options,it, iteration):
+            index = ray_trace(_assembly,flow_direction,n, options)
+        else:
+            index = np.array([],dtype=np.int16)#np.zeros(len(_assembly.mesh.facets),dtype=np.int16)
+            _assembly.freestream.per_facet_mach =  np.ones(len(_assembly.mesh.facets)) *_assembly.freestream.mach
+            _assembly.aerothermo.partial_factor = np.zeros(len(_assembly.mesh.facets))
 
         _assembly.aero_index = index
         compute_aerothermodynamics(_assembly, [], index, flow_direction, options)
@@ -1502,11 +1507,11 @@ def compute_per_facet_flow_dir(assembly,flow_direction, do_pfm=False):
     velocity_resultant = free.mach*free.sound*np.tile(flow_direction,[len(assembly.mesh.facet_area),1])
     if do_pfm:
         angular_velocity_vector = np.array([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])
-
-        for i_centroid, facet_centroid in enumerate(assembly.mesh.facet_COG):
-            velocity_resultant[i_centroid,:] -= np.cross(angular_velocity_vector,(facet_centroid-assembly.mesh.COG))
+        centroid_radii =  assembly.mesh.facet_COG - assembly.mesh.COG
+        tangential_velocity = np.cross(angular_velocity_vector,centroid_radii)
+        velocity_resultant -= tangential_velocity
         
     mach_resultant = np.linalg.norm(velocity_resultant,axis=1)/free.sound
-    for i_v, v in enumerate(velocity_resultant):
-        velocity_resultant[i_v,:] = v / np.linalg.norm(v)
+    velocity_norm = np.linalg.norm(velocity_resultant, axis=1, keepdims=True)
+    velocity_resultant = velocity_resultant/velocity_norm
     return velocity_resultant,mach_resultant

@@ -20,6 +20,7 @@
 from Geometry import mesh as Mesh
 from Geometry import gmsh_api as GMSH
 from Geometry.tetra import inertia_tetra, vol_tetra
+from Geometry.enclosure import build_enclosure_AABB, build_enclosure_num
 import numpy as np
 from copy import deepcopy
 import subprocess
@@ -325,6 +326,7 @@ class Aerothermo():
         self.Te = np.zeros((n_points))
         self.rhoe = np.zeros((n_points))
         self.ue = np.zeros((n_points))
+        self.debug_alpha = np.zeros((n_points))
 
         #Air-5 species + material element
         self.nSpecies = 6
@@ -470,6 +472,7 @@ class Assembly():
         #Initialize surface temperature of the assembly
         for obj in self.objects:
             self.aerothermo.temperature[obj.facet_index] = obj.temperature
+            self.aerothermo.debug_alpha[obj.facet_index] = obj.debug_alpha
 
         self.collision = None
 
@@ -519,6 +522,9 @@ class Assembly():
 
         self.angle_blackbody = np.zeros(len(self.mesh.facets))
         self.angle_atomic    = np.zeros(len(self.mesh.facets))
+
+        self.enclosure_AABB = build_enclosure_AABB(self)
+        self.enclosure_component_num = build_enclosure_num(self)
 
 
     def generate_inner_domain(self, write = False, output_folder = '', output_filename = '', bc_ids = []):
@@ -589,11 +595,6 @@ class Assembly():
         self.mesh.vol_mass  = vol*density
         self.mass = np.sum(self.mesh.vol_mass)
 
-        print('density:', density[0])
-
-        print('volume:', np.sum(vol))
-
-        print('mass:', self.mass)
 
         #Computes the Center of Mass
         if self.mass <= 0:

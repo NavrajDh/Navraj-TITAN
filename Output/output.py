@@ -23,7 +23,7 @@ import os
 import meshio
 from pathlib import Path
 
-def write_output_data(titan, options):
+def write_output_data(titan, options, smooth=False):
 
     df = pd.DataFrame()
 
@@ -90,7 +90,15 @@ def write_output_data(titan, options):
         df['VelRoll'] =  [assembly.roll_vel*180/np.pi]
         df['VelPitch'] = [assembly.pitch_vel*180/np.pi]
         df['VelYaw'] =   [assembly.yaw_vel*180/np.pi]
-        df['magnitudeOmega'] = np.linalg.norm([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])*180/np.pi
+        
+        omega= np.array([assembly.roll_vel,assembly.pitch_vel,assembly.yaw_vel])
+        angular_momentum = assembly.inertia @ omega
+
+        df['magnitudeOmega'] = np.linalg.norm(omega)*180/np.pi
+        df['angularMomentum_x'] = angular_momentum[0]
+        df['angularMomentum_y'] = angular_momentum[1]
+        df['angularMomentum_z'] = angular_momentum[2]
+        df['magnitudeAngularMomentum'] = np.linalg.norm(angular_momentum)
 
         #Quaternion Body -> ECEF frame        
         df['Quat_w']   = [assembly.quaternion[3]]
@@ -111,7 +119,7 @@ def write_output_data(titan, options):
         df['Temperature'] = [assembly.freestream.temperature]
         df['Pressure'] = [assembly.freestream.pressure]
         df['SpecificHeatRatio'] = [assembly.freestream.gamma]
-        df['Qint'] = [np.sum(assembly.aerothermo.heatflux*assembly.mesh.facet_area)]
+        #df['Qint'] = [np.sum(assembly.aerothermo.heatflux*assembly.mesh.facet_area)]
         df['qmax'] = [max(assembly.aerothermo.heatflux)]
         df['Tmax'] = [max(assembly.aerothermo.temperature)]
         df['knudsen'] = [assembly.freestream.knudsen]
@@ -147,7 +155,11 @@ def write_output_data(titan, options):
         df = pd.concat([df, df_mass], axis = 1)
 
         df = df.round(decimals = 12)
-        df.to_csv(options.output_folder + '/Data/'+ 'data.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data.csv'), index = False)
+        if options.time_fidelity>0.0 and smooth:
+            df.to_csv(options.output_folder + '/Data/'+ 'data_smooth.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data_smooth.csv'), index = False)
+            return
+        elif not smooth:
+            df.to_csv(options.output_folder + '/Data/'+ 'data.csv', mode='a' ,header=not os.path.exists(options.output_folder + '/Data/data.csv'), index = False)
 
     df = pd.DataFrame()
     for assembly in titan.assembly:
@@ -194,6 +206,7 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
     Te = np.array([])
     mDotVapor = np.array([])
     mDotMelt = np.array([])
+    debug_alpha = np.array([])
 
 
     for assembly in titan.assembly:
@@ -213,22 +226,25 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
         Te = assembly.aerothermo.Te
         mDotVapor = np.zeros(len(assembly.mesh.facets))
         mDotMelt  = np.zeros(len(assembly.mesh.facets))
+        debug_alpha = assembly.aerothermo.debug_alpha
         if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
             mDotVapor = assembly.mDotVapor
             mDotMelt = assembly.mDotMelt
         #hf_cond = assembly.hf_cond
 
-        for cellid in range(len(assembly.mesh.facets)):
-            cellID = np.append(cellID, cellid)
+        #cellID = np.arange(len(assembly.mesh.facets))
+        # for cellid in range(len(assembly.mesh.facets)):
+        #     cellID = np.append(cellID, cellid)
 
         
         cells = {"triangle": facets}
 
-        cell_data = { "Pressure": [pressure],
-                      "Heatflux": [heatflux],
-                      "Temperature": [temperature],
-                      "Shear": [shear],
-                      "Theta": [theta],
+        cell_data = { "pressure": [pressure],
+                      "heatflux": [heatflux],
+                      "temperature": [temperature],
+                      "shear": [shear],
+                      "theta": [theta],
+                      "debug_alpha" : [debug_alpha]
                       #"Enthalpy BLE": [he],
                       #"Enthalpy Wall": [hw],
                       #"Temperatue BLE": [Te],
@@ -238,7 +254,7 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
             if options.thermal.ablation_mode == 'PATO':
                 cell_data["mDotVapor"] = [mDotVapor]
                 cell_data["mDotMelt"]  = [mDotMelt]
-        point_data = { "Displacement": displacement}
+        point_data = { "displacement": displacement}
 
         trimesh = meshio.Mesh(points,
                               cells=cells,
@@ -246,6 +262,160 @@ def generate_surface_solution(titan, options, iter_value, folder = 'Surface_solu
                               cell_data = cell_data)
 
         folder_path = options.output_folder+'/' + folder + '/ID_'+str(assembly.id)
+        Path(folder_path).mkdir(parents=True, exist_ok=True)
+
+        vol_mesh_filepath = f"{folder_path}/solution_iter_{str(iter_value).zfill(3)}.xdmf"
+        meshio.write(vol_mesh_filepath, trimesh, file_format="xdmf")
+
+## The following funcs split generate_surface_solution() into separate create, update and
+# write functions. At the moment this is something of a messy repeat but in future having
+# these be separate could give a minor speedup, see the dense solution pipeline for an
+#  example of this  
+
+def create_surface_solution(titan, options):
+    solutions = []
+    points = np.array([])
+    facets = np.array([])
+    pressure = np.array([])
+    shear = np.array([])
+    heatflux = np.array([])
+    #hf_cond = np.array([])
+    #radius = np.array([])
+    #ellipse = np.array([])
+    #cellID = np.array([])
+    #emissive_power = np.array([])
+    theta = np.array([])
+    #he = np.array([])
+    #hw = np.array([])
+    #Te = np.array([])
+    mDotVapor = np.array([])
+    mDotMelt = np.array([])
+    debug_alpha = np.array([])
+
+
+    for assembly in titan.assembly:
+        points = assembly.mesh.nodes - assembly.mesh.surface_displacement
+        facets = assembly.mesh.facets
+        pressure = assembly.aerothermo.pressure
+        heatflux = assembly.aerothermo.heatflux
+        shear = assembly.aerothermo.shear
+        displacement = assembly.mesh.surface_displacement
+        # radius = assembly.mesh.facet_radius
+        # ellipse = assembly.inside_shock
+        temperature  = assembly.aerothermo.temperature
+        # emissive_power = assembly.emissive_power
+        theta = assembly.aerothermo.theta
+        # he = assembly.aerothermo.he
+        # hw = assembly.aerothermo.hw
+        # Te = assembly.aerothermo.Te
+        debug_alpha = assembly.aerothermo.debug_alpha
+
+        if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
+            mDotVapor = np.zeros(len(assembly.mesh.facets))
+            mDotMelt  = np.zeros(len(assembly.mesh.facets))
+            mDotVapor = assembly.mDotVapor
+            mDotMelt = assembly.mDotMelt
+        #hf_cond = assembly.hf_cond
+
+        #cellID = np.arange(len(assembly.mesh.facets))
+        # for cellid in range(len(assembly.mesh.facets)):
+        #     cellID = np.append(cellID, cellid)
+
+        
+        cells = {"triangle": facets}
+
+        cell_data = { "pressure": [pressure],
+                      "heatflux": [heatflux],
+                      "temperature": [temperature],
+                      "shear": [shear],
+                      "theta": [theta],
+                      "debug_alpha" : [debug_alpha]
+                      #"Enthalpy BLE": [he],
+                      #"Enthalpy Wall": [hw],
+                      #"Temperatue BLE": [Te],
+                    }
+        # I don't believe He, Hw and Te are functional at present
+        if options.thermal.ablation:
+            if options.thermal.ablation_mode == 'PATO':
+                cell_data["mDotVapor"] = [mDotVapor]
+                cell_data["mDotMelt"]  = [mDotMelt]
+        point_data = { "displacement": displacement}
+
+        trimesh = meshio.Mesh(points,
+                              cells=cells,
+                              point_data = point_data,
+                              cell_data = cell_data)
+        solutions.append(trimesh)
+    return solutions
+
+def update_surface_solution(titan,options,solutions,overwrite=None):
+    points = np.array([])
+    facets = np.array([])
+    pressure = np.array([])
+    shear = np.array([])
+    heatflux = np.array([])
+    #hf_cond = np.array([])
+    #radius = np.array([])
+    #ellipse = np.array([])
+    #cellID = np.array([])
+    #emissive_power = np.array([])
+    theta = np.array([])
+    #he = np.array([])
+    #hw = np.array([])
+    #Te = np.array([])
+    mDotVapor = np.array([])
+    mDotMelt = np.array([])
+    debug_alpha = np.array([])
+    for i_assem, _assembly in enumerate(titan.assembly):
+            # points = assembly.mesh.nodes - assembly.mesh.surface_displacement
+        # facets = assembly.mesh.facets
+        if overwrite is not None:
+            pressure = overwrite[i_assem]['pressure'][:]
+            heatflux = overwrite[i_assem]['heatflux'][:]
+            shear = overwrite[i_assem]['shear'][:]
+            
+            temperature = overwrite[i_assem]['temperature'][:]
+            theta = overwrite[i_assem]['theta'][:]
+            debug_alpha = overwrite[i_assem]['debug_alpha'][:]
+        else:
+            pressure = _assembly.aerothermo.pressure
+            heatflux = _assembly.aerothermo.heatflux
+            shear = _assembly.aerothermo.shear
+            # radius = assembly.mesh.facet_radius
+            # ellipse = assembly.inside_shock
+            temperature  = _assembly.aerothermo.temperature
+            # emissive_power = assembly.emissive_power
+            theta = _assembly.aerothermo.theta
+            # he = assembly.aerothermo.he
+            # hw = assembly.aerothermo.hw
+            # Te = assembly.aerothermo.Te
+            debug_alpha = _assembly.aerothermo.debug_alpha
+        displacement = _assembly.mesh.surface_displacement
+
+        if options.thermal.ablation_mode.lower() == 'pato' and options.pato.Ta_bc == 'ablation':
+            mDotVapor = np.zeros(len(_assembly.mesh.facets))
+            mDotMelt  = np.zeros(len(_assembly.mesh.facets))
+            if overwrite is not None:
+                mDotVapor = overwrite[i_assem]['mDotVapor'][:]
+                mDotMelt = overwrite[i_assem]['mDotMelt'][:]
+            else:
+                mDotVapor = _assembly.mDotVapor
+                mDotMelt  = _assembly.mDotMelt
+            solutions[i_assem].cell_data["mDotVapor"][:] = mDotVapor
+            solutions[i_assem].cell_data["mDotMelt"][:]  = mDotMelt
+
+        solutions[i_assem].cell_data["pressure"][:] = pressure
+        solutions[i_assem].cell_data["heatflux"][:] = heatflux
+        solutions[i_assem].cell_data["temperature"][:] = temperature
+        solutions[i_assem].cell_data["shear"][:] = shear
+        solutions[i_assem].cell_data["theta"][:] = theta
+        solutions[i_assem].point_data["displacement"][:] = displacement
+        solutions[i_assem].cell_data["debug_alpha"][:] = debug_alpha
+        return solutions
+
+def write_surface_solution(options,solutions,IDS,iter_value,folder='Surface_solution'):
+    for trimesh, assembly_id in zip(solutions,IDS):
+        folder_path = options.output_folder+'/' + folder + '/ID_'+str(assembly_id)
         Path(folder_path).mkdir(parents=True, exist_ok=True)
 
         vol_mesh_filepath = f"{folder_path}/solution_iter_{str(iter_value).zfill(3)}.xdmf"

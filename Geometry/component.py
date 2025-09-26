@@ -29,11 +29,15 @@ class Component_list():
         self.object = []
         self.id = 1
         
-    def insert_component(self,filename, file_type, inner_stl = '', id = 0, binary = True, trigger_type = 'Indestructible', trigger_value = 0,fenics_bc_id = -1, material = 'Unittest', temperature = 300, options = None, global_ID = 0, bloom_config = [False, 0, 0, 0]):
+    def insert_component(self,filename, file_type, inner_stl = '', id = 0, binary = True, trigger_type = 'Indestructible', 
+                         trigger_value = 0,fenics_bc_id = -1, material = 'Unittest', temperature = 300, options = None, 
+                         global_ID = 0, bloom_config = [False, 0, 0, 0], enclosure=0, alpha = 1.0):
 
         self.object.append(Component(filename, file_type, inner_stl = inner_stl, id = self.id, 
                            binary = binary, temperature = temperature, trigger_type = trigger_type,
-                           trigger_value = trigger_value, fenics_bc_id = fenics_bc_id, material = material, options = options, global_ID = global_ID, bloom_config = bloom_config))
+                           trigger_value = trigger_value, fenics_bc_id = fenics_bc_id, material = material, 
+                           options = options, global_ID = global_ID, bloom_config = bloom_config, 
+                           enclosure=enclosure, alpha=alpha))
         self.id += 1
 
 class Component():
@@ -44,7 +48,8 @@ class Component():
     
     def __init__(self,filename, file_type, inner_stl = '', id = 0, binary = True, temperature = 300,
                  trigger_type = 'Indestructible', trigger_value = 0, fenics_bc_id = -1, material = 'Unittest',
-                 v0 = [], v1 = [], v2 = [], parent_id = None, parent_part = None, options = None, global_ID = 0, bloom_config = [False, 0, 0, 0]):
+                 v0 = [], v1 = [], v2 = [], parent_id = None, parent_part = None, options = None, global_ID = 0, 
+                 bloom_config = [False, 0, 0, 0], enclosure = 0, alpha = 1.0):
 
         print("Generating Body: ", filename)
         
@@ -131,6 +136,9 @@ class Component():
             self.bloom = bloom(bloom_config)
 
         self.density_ratio = 1
+
+        self.enclosure = enclosure
+        self.debug_alpha = alpha
 
     def compute_mass_properties(self, coords, elements, density):
         """
