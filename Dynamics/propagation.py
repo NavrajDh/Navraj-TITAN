@@ -13,7 +13,6 @@ from functools import partial
 from Output import output
 from warnings import warn
 from copy import copy, deepcopy
-import concurrent.futures, psutil
 ## Current implented integrators (define in cfg under [Time] as Time_integration='')...
 
 ## Constant time-step methods  
@@ -672,3 +671,11 @@ def quaternion_conjugate(q): return np.array([-q[0],-q[1],-q[2],q[3]])
 def quaternion_normalize(q):
     norm = np.linalg.norm(q)
     return q/norm
+
+def quaternion_to_matrix(q):
+    return np.array([
+        [1 - 2 * (q[1]**2 + q[2]**2),     2 * (q[0] * q[1] - q[3] * q[2]), 2 * (q[0] * q[2] + q[3] * q[1]), 0],
+        [2 * (q[0] * q[1] + q[3] * q[2]), 1 - 2 * (q[0]**2 + q[2]**2),     2 * (q[1] * q[2] - q[3] * q[0]), 0],
+        [2 * (q[0] * q[2] - q[3] * q[1]), 2 * (q[1] * q[2] + q[3] * q[0]), 1 - 2 * (q[0]**2 + q[1]**2),     0],
+        [0,                               0,                               0,                               1]
+    ])
