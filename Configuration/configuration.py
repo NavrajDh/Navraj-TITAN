@@ -920,7 +920,6 @@ def read_geometry(configParser, options):
                     material= [s for s in value if "material=" in s.lower()][0].split("=")[1]
                     try:
                         enclosure = int([s for s in value if "enclosure=" in s.lower()][0].split("=")[1])
-                        print('Warning! Enclosure system is unverified and still in active development!!')
                     except:
                         enclosure = 0
 
