@@ -1290,6 +1290,12 @@ def read_config_file(configParser, postprocess = "", emissions = ""):
 
                     #for each object, define connectivity to connected objects for heat conduction between objects
                     pato.identify_object_connections(assembly)
+                
+                if np.any([abs(obj.enclosure)>0 for obj in assembly.objects]):
+                    from Geometry.enclosure import build_enclosure_AABB, build_enclosure_num
+                    assembly.enclosure_AABB = build_enclosure_AABB(assembly)
+                    assembly.enclosure_component_num  = build_enclosure_num(assembly)
+                    
             options.save_mesh(titan)
         
         #Reads the Initial pitch/yaw/roll 

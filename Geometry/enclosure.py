@@ -41,9 +41,9 @@ def build_enclosure_AABB(assembly):
     AABB_dict = {}
     for component in assembly.objects:
         if not component.enclosure==0:
-            comp_AABB = [np.zeros(3),np.zeros(3),np.zeros(3)]
-            comp_AABB[0] = np.min(component.mesh.nodes-component.mesh.COG, axis=0)
-            comp_AABB[1] = np.max(component.mesh.nodes-component.mesh.COG, axis=0)
+            comp_AABB = [np.zeros(3),np.zeros(3)]
+            comp_AABB[0] = np.min(component.mesh.nodes, axis=0)-assembly.COG
+            comp_AABB[1] = np.max(component.mesh.nodes, axis=0)-assembly.COG
             if not component.enclosure in AABB_dict.keys(): AABB_dict[component.enclosure] = comp_AABB                
             else:
                 for i_ax in range(3):
