@@ -49,6 +49,7 @@ def compute_thermal_0D(titan, options):
     Tref = 273
 
     for assembly in titan.assembly:
+        recompute_mass_flag = False
         #if assembly.ablation_mode != '0d': continue
 
         for obj in assembly.objects:
@@ -73,6 +74,7 @@ def compute_thermal_0D(titan, options):
                 melt_Q = (obj.mass*cp)*(dT-dT_melt)
                 dm = -melt_Q/(obj.material.meltingHeat)
                 dT = dT_melt
+                recompute_mass_flag = True
             else:
                 dm = 0
 
@@ -93,7 +95,7 @@ def compute_thermal_0D(titan, options):
     
             #obj.photons = compute_radiance(obj.temperature, Atot, emissivity)
 
-        assembly.compute_mass_properties()
+        if recompute_mass_flag: assembly.compute_mass_properties()
 
     return
 

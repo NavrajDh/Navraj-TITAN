@@ -440,6 +440,7 @@ def compute_low_fidelity_aerothermo(assembly, options, iteration):
     for it, _assembly in enumerate(assembly):
         _assembly.aerothermo.heatflux *= 0
         _assembly.aerothermo.pressure *= 0
+        _assembly.aerothermo.pressure += _assembly.freestream.pressure
         _assembly.aerothermo.shear    *= 0
         _assembly.aerothermo.he       *= 0
         _assembly.aerothermo.hw       *= 0
@@ -503,31 +504,43 @@ def edge_subdivision(v0,v1,v2, n):
 
     return COG
 
-def ray_trace(_assembly, flow_direction,n, options):
+def ray_trace(_assembly, flow_direction, n, options):
+    # Prefilter our raytracing by flow-facing facets
+    facet_normal = _assembly.mesh.facet_normal
+    length_normal = np.linalg.norm(facet_normal, axis = 1, ord = 2)
+    _assembly.aerothermo.theta =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal/length_normal[:,None] , axis = 1), -1.0, 1.0))
+    p = np.where(_assembly.aerothermo.theta>0)[0]
+
+    #p = np.arange(len(_assembly.mesh.facet_area))
     flow_dirs, pfm = compute_per_facet_flow_dir(_assembly,flow_direction, options.dynamics.per_facet_flow)
     _assembly.freestream.per_facet_mach = pfm
-
+    flow_dirs = flow_dirs[p,:]
     mesh = trimesh.Trimesh(vertices=_assembly.mesh.nodes, faces=_assembly.mesh.facets)
     ray = trimesh.ray.ray_pyembree.RayMeshIntersector(mesh)
 
-    COG = edge_subdivision(_assembly.mesh.v0, _assembly.mesh.v1, _assembly.mesh.v2, n)
+    COG = edge_subdivision(_assembly.mesh.v0[p], _assembly.mesh.v1[p], _assembly.mesh.v2[p], n)
+    for _ in range(n):
+        flow_dirs = np.repeat(flow_dirs,4, axis=0)
+        #p_div = np.hstack((p,p+len(p),p+2*len(p),p+3*len(p)))
 
     ray_list = COG - 1E-4*flow_dirs
     ray_directions = -flow_dirs
 
     ray_directions.shape = (-1,3)
 
-    index = ~ray.intersects_any(ray_origins = ray_list, ray_directions = ray_directions)
-    index.shape = (-1, 4**n)
-    index = np.sum(index, axis = 1)
-
-    _assembly.aerothermo.partial_factor = np.zeros(len(_assembly.mesh.facets)) + index/(4**n)
+    index    =  np.zeros(len(_assembly.mesh.facet_area), dtype=np.int16)
+    hits = ~ray.intersects_any(ray_origins = ray_list, ray_directions = ray_directions)
+    
+    hits.shape = (-1, 4**n)
+    hits = np.sum(hits, axis = 1)
+    index[p] = hits
+    _assembly.aerothermo.partial_factor = index/(4**n)
 
     index = np.arange(len(_assembly.mesh.facets))[index != 0]
 
     _assembly.aerothermo.proj_area = 0
-    for i_facet in index:
-        _assembly.aerothermo.proj_area+=abs(_assembly.mesh.facet_area[i_facet]*np.dot(_assembly.mesh.facet_normal[i_facet],flow_direction))
+    proj_facet_areas = _assembly.mesh.facet_area[index] * np.dot(_assembly.mesh.facet_normal[index],flow_direction)
+    _assembly.aerothermo.proj_area=np.sum(proj_facet_areas)
 
     return index
 
@@ -823,7 +836,7 @@ def aerodynamics_module_continuum(assembly, p, flow_direction):
 
     p = p*(length_normal[p] != 0)
 
-    assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
+    #assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
     P0_s = free.P1_s
     Cpmax= (2.0/(free.gamma*free.per_facet_mach[p]**2.0))*((P0_s/free.pressure-1.0))
 
@@ -868,7 +881,7 @@ def aerothermodynamics_module_ice_giants(assembly, index, flow_direction, option
 
     length_normal = np.linalg.norm(assembly.mesh.facet_normal, axis = 1, ord = 2)
     index = index*(length_normal[index] != 0)
-    assembly.aerothermo.theta[index] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * assembly.mesh.facet_normal[index]/length_normal[index,None] , axis = 1), -1.0, 1.0))
+    #assembly.aerothermo.theta[index] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * assembly.mesh.facet_normal[index]/length_normal[index,None] , axis = 1), -1.0, 1.0))
 
     Theta = assembly.aerothermo.theta[index]
 
@@ -974,7 +987,7 @@ def aerothermodynamics_module_continuum(assembly, p, flow_direction, options):
     length_normal = np.linalg.norm(facet_normal, ord = 2, axis = 1)
     p = p*(length_normal[p] != 0)
 
-    assembly.aerothermo.theta[p] = np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
+    #assembly.aerothermo.theta[p] = np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
 
     Theta = assembly.aerothermo.theta[p]
 
@@ -1077,7 +1090,7 @@ def aerothermodynamics_module_freemolecular(assembly, p, flow_direction):
     length_normal = np.linalg.norm(facet_normal, ord = 2, axis = 1)
     p = p*(length_normal[p] != 0)
 
-    assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
+    #assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
 
     Theta = assembly.aerothermo.theta[p]
 
@@ -1126,7 +1139,7 @@ def aerodynamics_module_freemolecular(assembly, p, flow_direction):
 
 
     length_normal = np.linalg.norm(facet_normal, ord = 2, axis = 1)
-    assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
+    #assembly.aerothermo.theta[p] =np.pi/2 - np.arccos(np.clip(np.sum(- flow_direction * facet_normal[p]/length_normal[p,None] , axis = 1), -1.0, 1.0))
 
     Theta = assembly.aerothermo.theta[p]
 
