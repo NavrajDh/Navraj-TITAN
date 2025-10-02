@@ -104,7 +104,7 @@ def write_material_properties(options, obj):
 
         f.write('/*---------------------------------------------------------------------------*\\n')
         f.write('Material properties for the substructure materials\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
@@ -249,7 +249,7 @@ def write_All_run(options, obj, time, time_step, iteration):
         f.write('else\n')
         f.write('    sed_cmd=sed\n')
         f.write('fi\n')
-        f.write('$sed_cmd -i "s/numberOfSubdomains \+[0-9]*;/numberOfSubdomains ""$NPROCESSOR"";/g" system/subMat1/decomposeParDict\n')
+        f.write('$sed_cmd -i "s/numberOfSubdomains \\+[0-9]*;/numberOfSubdomains ""$NPROCESSOR"";/g" system/subMat1/decomposeParDict\n')
         f.write('cp qconv/BC_'+str(start_time) + ' qconv/BC_' + str(end_time) + '\n')
         f.write('mpiexec -np $NPROCESSOR PATOx -parallel \n')
         f.write('TIME_STEP='+str(end_time)+' \n')
@@ -310,13 +310,13 @@ def write_constant_folder(options, object_id):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/constant/regionProperties', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  2.1.x                                 |\n')
-        f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  2.1.x                                 |\n')
+        f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
         f.write('  format      ascii;\n')
@@ -339,13 +339,13 @@ def write_constant_folder(options, object_id):
 
         with open(options.output_folder + '/PATO_'+str(object_id)+'/constant/subMat1/subMat1Properties', 'w') as f:
     
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     4.0;\n')
             f.write('  format      ascii;\n')
@@ -393,13 +393,13 @@ def write_constant_folder(options, object_id):
 
         with open(options.output_folder + '/PATO_'+str(object_id)+'/constant/subMat1/subMat1Properties', 'w') as f:
     
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     4.0;\n')
             f.write('  format      ascii;\n')
@@ -453,13 +453,13 @@ def write_constant_folder(options, object_id):
 
         with open(options.output_folder + '/PATO_'+str(object_id)+'/constant/subMat1/dynamicMeshDict', 'w') as f:
     
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 | \n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | \n')
-            f.write('|  \\    /   O peration     | Version:  5.0                                   | \n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      | \n')
-            f.write('|    \\/     M anipulation  |                                                 | \n')
-            f.write('\*---------------------------------------------------------------------------*/ \n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | \n')
+            f.write('|  \\\\    /   O peration     | Version:  5.0                                   | \n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      | \n')
+            f.write('|    \\\\/     M anipulation  |                                                 | \n')
+            f.write('\\*---------------------------------------------------------------------------*/ \n')
             f.write('FoamFile { \n')
             f.write('  version         4.0; \n')
             f.write('  format          ascii; \n')
@@ -480,12 +480,12 @@ def write_constant_folder(options, object_id):
 
         with open(options.output_folder + '/PATO_'+str(object_id)+'/constant/subMat1/BoundaryConditions', 'w') as f:
     
-            f.write('/*---------------------------------------------------------------------------*\\n')
+            f.write('/*---------------------------------------------------------------------------*\\ \n')
             f.write('BoundaryConditions\n')
             f.write('\n')
             f.write('Application\n')
             f.write('    Provides boundary-condition information at the surface, tabulated as a function of time.\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('/*\n')
             f.write('t(s)    p_total_w(Pa)   rhoUeCH(kg/m²/s)    h_r(J/kg)   chemistryOn\n')
             f.write('*/\n')
@@ -515,13 +515,13 @@ def write_origin_folder(options, obj):
 
     with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/p', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
         f.write('  format      ascii;\n')
@@ -554,13 +554,13 @@ def write_origin_folder(options, obj):
 
     with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/Ta', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
         f.write('  format      ascii;\n')
@@ -634,13 +634,13 @@ def write_origin_folder(options, obj):
 
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/cellMotionU', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  4.x                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  4.x                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     5.0;\n')
             f.write('  format      ascii;\n')
@@ -669,13 +669,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/h_g', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('  =========                 |\n')
             f.write('  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox\n')
             f.write('   \\    /   O peration     | Website:  https://openfoam.org\n')
             f.write('    \\  /    A nd           | Version:  7\n')
             f.write('     \\/     M anipulation  |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     2.0;\n')
             f.write('  format      ascii;\n')
@@ -705,13 +705,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/mDotG', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('  =========                 |\n')
-            f.write('  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox\n')
-            f.write('   \\    /   O peration     | Website:  https://openfoam.org\n')
-            f.write('    \\  /    A nd           | Version:  7\n')
-            f.write('     \\/     M anipulation  |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('  \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox\n')
+            f.write('   \\\\    /   O peration     | Website:  https://openfoam.org\n')
+            f.write('    \\\\  /    A nd           | Version:  7\n')
+            f.write('     \\\\/     M anipulation  |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     2.0;\n')
             f.write('  format      ascii;\n')
@@ -738,13 +738,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/mDotGw', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('  =========                 | \n')
-            f.write('  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
-            f.write('   \\    /   O peration     | Website:  https://openfoam.org \n')
-            f.write('    \\  /    A nd           | Version:  7 \n')
-            f.write('     \\/     M anipulation  | \n')
-            f.write('\*---------------------------------------------------------------------------*/ \n')
+            f.write('  \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
+            f.write('   \\\\    /   O peration     | Website:  https://openfoam.org \n')
+            f.write('    \\\\  /    A nd           | Version:  7 \n')
+            f.write('     \\\\/     M anipulation  | \n')
+            f.write('\\*---------------------------------------------------------------------------*/ \n')
             f.write('FoamFile { \n')
             f.write('  version     2.0; \n')
             f.write('  format      ascii; \n')
@@ -773,13 +773,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/pointMotionU', 'w') as f:
     
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  4.x                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  4.x                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     5.0;\n')
             f.write('  format      ascii;\n')
@@ -809,13 +809,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/rho_s', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     2.0;\n')
             f.write('  format      ascii;\n')
@@ -842,13 +842,13 @@ def write_origin_folder(options, obj):
     
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/vG', 'w') as f:
             
-             f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+             f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
              f.write('| =========                 |                                                 |\n')
-             f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-             f.write('|  \\    /   O peration     | Version:  5.0                                   |\n')
-             f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
-             f.write('|    \\/     M anipulation  |                                                 |\n')
-             f.write('\*---------------------------------------------------------------------------*/\n')
+             f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+             f.write('|  \\\\    /   O peration     | Version:  5.0                                   |\n')
+             f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      |\n')
+             f.write('|    \\\\/     M anipulation  |                                                 |\n')
+             f.write('\\*---------------------------------------------------------------------------*/\n')
              f.write('FoamFile {\n')
              f.write('  version     2.0;\n')
              f.write('  format      ascii;\n')
@@ -876,13 +876,13 @@ def write_origin_folder(options, obj):
 
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/mDotMelt', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('  =========                 | \n')
-            f.write('  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
-            f.write('   \\    /   O peration     | Website:  https://openfoam.org \n')
-            f.write('    \\  /    A nd           | Version:  7 \n')
-            f.write('     \\/     M anipulation  | \n')
-            f.write('\*---------------------------------------------------------------------------*/ \n')
+            f.write('  \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
+            f.write('   \\\\    /   O peration     | Website:  https://openfoam.org \n')
+            f.write('    \\\\  /    A nd           | Version:  7 \n')
+            f.write('     \\\\/     M anipulation  | \n')
+            f.write('\\*---------------------------------------------------------------------------*/ \n')
             f.write('FoamFile { \n')
             f.write('  version     2.0; \n')
             f.write('  format      ascii; \n')
@@ -911,13 +911,13 @@ def write_origin_folder(options, obj):
 
         with open(options.output_folder + '/PATO_'+str(obj.global_ID)+'/origin.0/subMat1/mDotVapor', 'w') as f:
             
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('  =========                 | \n')
-            f.write('  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
-            f.write('   \\    /   O peration     | Website:  https://openfoam.org \n')
-            f.write('    \\  /    A nd           | Version:  7 \n')
-            f.write('     \\/     M anipulation  | \n')
-            f.write('\*---------------------------------------------------------------------------*/ \n')
+            f.write('  \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox \n')
+            f.write('   \\\\    /   O peration     | Website:  https://openfoam.org \n')
+            f.write('    \\\\  /    A nd           | Version:  7 \n')
+            f.write('     \\\\/     M anipulation  | \n')
+            f.write('\\*---------------------------------------------------------------------------*/ \n')
             f.write('FoamFile { \n')
             f.write('  version     2.0; \n')
             f.write('  format      ascii; \n')
@@ -1033,13 +1033,13 @@ def write_system_folder(options, object_id, time, time_step):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/system/controlDict', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  1.5                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  1.5                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
         f.write('  format      ascii;\n')
@@ -1095,13 +1095,13 @@ def write_system_folder(options, object_id, time, time_step):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/system/subMat1/fvSchemes', 'w') as f:
 
-        f.write(' /*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write(' /*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  1.5                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  1.5                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version     2.0;\n')
         f.write('  format      ascii;\n')
@@ -1148,13 +1148,13 @@ def write_system_folder(options, object_id, time, time_step):
 
         if (options.pato.Ta_bc != 'ablation'):
 
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  1.5                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  1.5                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     2.0;\n')
             f.write('  format      ascii;\n')
@@ -1182,13 +1182,13 @@ def write_system_folder(options, object_id, time, time_step):
 
         else:
 
-            f.write('/*--------------------------------*- C++ -*----------------------------------*\\n')
+            f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
             f.write('| =========                 |                                                 |\n')
-            f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-            f.write('|  \\    /   O peration     | Version:  1.5                                   |\n')
-            f.write('|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
-            f.write('|    \\/     M anipulation  |                                                 |\n')
-            f.write('\*---------------------------------------------------------------------------*/\n')
+            f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+            f.write('|  \\\\    /   O peration     | Version:  1.5                                   |\n')
+            f.write('|   \\\\  /    A nd           | Web:      http://www.OpenFOAM.org               |\n')
+            f.write('|    \\\\/     M anipulation  |                                                 |\n')
+            f.write('\\*---------------------------------------------------------------------------*/\n')
             f.write('FoamFile {\n')
             f.write('  version     2.0;\n')
             f.write('  format      ascii;\n')
@@ -1238,13 +1238,13 @@ def write_system_folder(options, object_id, time, time_step):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/system/subMat1/plotDict', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  dev                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      http://www.openfoam.org               |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  dev                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      http://www.openfoam.org               |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version         5.0;\n')
         f.write('  format          ascii;\n')
@@ -1293,13 +1293,13 @@ def write_system_folder(options, object_id, time, time_step):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/system/subMat1/surfacePatchDict', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 |\n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
-        f.write('|  \\    /   O peration     | Version:  dev                                   |\n')
-        f.write('|   \\  /    A nd           | Web:      http://www.openfoam.org               |\n')
-        f.write('|    \\/     M anipulation  |                                                 |\n')
-        f.write('\*---------------------------------------------------------------------------*/\n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |\n')
+        f.write('|  \\\\    /   O peration     | Version:  dev                                   |\n')
+        f.write('|   \\\\  /    A nd           | Web:      http://www.openfoam.org               |\n')
+        f.write('|    \\\\/     M anipulation  |                                                 |\n')
+        f.write('\\*---------------------------------------------------------------------------*/\n')
         f.write('FoamFile {\n')
         f.write('  version         5.0;\n')
         f.write('  format          ascii;\n')
@@ -1349,13 +1349,13 @@ def write_system_folder(options, object_id, time, time_step):
 
     with open(options.output_folder + '/PATO_'+str(object_id)+'/system/subMat1/decomposeParDict', 'w') as f:
 
-        f.write('/*--------------------------------*- C++ -*----------------------------------*\ \n')
+        f.write('/*--------------------------------*- C++ -*----------------------------------*\\ \n')
         f.write('| =========                 |                                                 | \n')
-        f.write('| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | \n')
-        f.write('|  \\    /   O peration     | Version:  4.x                                   | \n')
-        f.write('|   \\  /    A nd           | Web:      www.OpenFOAM.org                      | \n')
-        f.write('|    \\/     M anipulation  |                                                 | \n')
-        f.write('\*---------------------------------------------------------------------------*/ \n')
+        f.write('| \\\\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           | \n')
+        f.write('|  \\\\    /   O peration     | Version:  4.x                                   | \n')
+        f.write('|   \\\\  /    A nd           | Web:      www.OpenFOAM.org                      | \n')
+        f.write('|    \\\\/     M anipulation  |                                                 | \n')
+        f.write('\\*---------------------------------------------------------------------------*/ \n')
         f.write('FoamFile { \n')
         f.write('  version     2.0; \n')
         f.write('  format      ascii; \n')

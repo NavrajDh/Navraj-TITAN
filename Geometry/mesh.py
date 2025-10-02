@@ -20,7 +20,8 @@
 import meshio
 import numpy as np
 import scipy.special as special
-from trimesh.viewer.windowed import SceneViewer
+# THis import causes some problems to say the least, removing it enables a much more up to date env
+#from trimesh.viewer.windowed import SceneViewer
 import open3d as o3d
 import trimesh
 from copy import deepcopy
@@ -519,8 +520,7 @@ def calculate_curvature(VertexNormals,Avertex,Acorner,up,vp,nodes,facets,facet_n
     sol_A = np.matmul(AT,A)
     sol_b = np.matmul(AT,b[:,:,None])
     sol_b.shape= (-1,3)
-   
-    x = np.linalg.solve(sol_A, sol_b)
+    x = np.linalg.solve(sol_A, sol_b[..., None])[..., 0]
 
     wfp = Acorner[:,:]/Avertex[facets[:]]
 

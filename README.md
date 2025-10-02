@@ -50,6 +50,24 @@ the user can use the pip manager to install the packages listed in the pip_requi
 - gmsh=4.10.5 (pip only)
 - trimsh[all] (pip only)
 
+### Compatibility Installation
+
+If you have issues with the standard conda environment creation a less restricted conda environment can be created with
+
+```console
+$ conda env create --name myenv --file titan_compatibility_env.yml
+```
+This should work on any system architecture, specification of your platform may be needed, e.g.
+
+```console
+$ conda env create --name myenv --platform=osx-arm64 --file titan_compatibility_env.yml
+```
+This compatibility environment combines conda and pip packages into a single command, you don't need to run 
+```pip install -r pip_requirements.txt```. Ideally in the future, this will become the default method of installation 
+but currently the compatibility environment is still in development. It has been verified on Ubuntu, 
+Fedora and Windows.
+
+***NOTE:*** TITAN is developed for **linux** first and foremost, you should **not expect perfect behaviour** on other operating systems. 
 
 ### Optional
 

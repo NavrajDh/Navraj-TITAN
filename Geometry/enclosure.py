@@ -23,17 +23,19 @@ def check_enclosure(assembly_list,options, assembly_index,debug_iter=0):
                         for component in AoI.objects: component.enclosure = 0
                         return True
                     else: found_assembly = True
+
                     enclosure_objs = np.array([component.enclosure for component in _assembly.objects])
                     n_objs = len(np.where(enclosure_objs==-1*enclosed)[0])
+
                     # If the enclosure has been broken the enclosed is exposed to the airstream
-                    if n_objs<_assembly.enclosure_component_num[-1*enclosed]: return True
-                    # Final check is if enclosed object has left enclosure AABB
-                    #enclosure_AABB = transform_AABB(_assembly.enclosure_AABB[-1*enclosed],_assembly.quaternion,_assembly.COG,_assembly.position,-_assembly.position)
-                    # enclosed_AABB = transform_AABB(AoI.enclosure_AABB[enclosed],AoI.quaternion,AoI.COG,AoI.position, -_assembly.position)
-                    # debug_AABB_mesh(enclosed_AABB,filename='closed_{}_{}'.format(assembly_index,debug_iter-5))
-                    # debug_AABB_mesh(enclosure_AABB,filename='closure_{}_{}'.format(i_assem,debug_iter-5))
-                    do_raytrace = enclosure_mesh_check(AoI.mesh,AoI.COG,_assembly.enclosure_AABB[-1*enclosed],AoI.quaternion,_assembly.quaternion, _assembly.position-AoI.position, 
-                                         ['closed_{}_{}'.format(assembly_index,debug_iter),'closure_{}_{}'.format(i_assem,debug_iter-5)])
+                    if n_objs<_assembly.enclosure_component_num[-1*enclosed]: 
+                        print('Enclosure fragmented! Breaking connection')
+                        for component in AoI.objects: component.enclosure = 0
+                        return True
+                    
+                    debug_meshes = None #['closed_{}_{}'.format(assembly_index,debug_iter),'closure_{}_{}'.format(i_assem,debug_iter-5)]
+                    do_raytrace = enclosure_mesh_check(AoI.mesh,AoI.COG,_assembly.enclosure_AABB[-1*enclosed],AoI.quaternion,
+                                                       _assembly.quaternion, _assembly.position-AoI.position, debug_meshes)
     return do_raytrace
 # Build collection of Axis-Aligned Bounding Boxes (AABBs) for each enclosure id,
 # a necessary but not sufficient criterion for something being inside something else
@@ -41,9 +43,9 @@ def build_enclosure_AABB(assembly):
     AABB_dict = {}
     for component in assembly.objects:
         if not component.enclosure==0:
-            comp_AABB = [np.zeros(3),np.zeros(3),np.zeros(3)]
-            comp_AABB[0] = np.min(component.mesh.nodes-component.mesh.COG, axis=0)
-            comp_AABB[1] = np.max(component.mesh.nodes-component.mesh.COG, axis=0)
+            comp_AABB = [np.zeros(3),np.zeros(3)]
+            comp_AABB[0] = np.min(component.mesh.nodes, axis=0)-assembly.COG
+            comp_AABB[1] = np.max(component.mesh.nodes, axis=0)-assembly.COG
             if not component.enclosure in AABB_dict.keys(): AABB_dict[component.enclosure] = comp_AABB                
             else:
                 for i_ax in range(3):

@@ -523,8 +523,8 @@ class Assembly():
         self.angle_blackbody = np.zeros(len(self.mesh.facets))
         self.angle_atomic    = np.zeros(len(self.mesh.facets))
 
-        self.enclosure_AABB = build_enclosure_AABB(self)
-        self.enclosure_component_num = build_enclosure_num(self)
+        # self.enclosure_AABB = build_enclosure_AABB(self)
+        # self.enclosure_component_num = build_enclosure_num(self)
 
 
     def generate_inner_domain(self, write = False, output_folder = '', output_filename = '', bc_ids = []):
