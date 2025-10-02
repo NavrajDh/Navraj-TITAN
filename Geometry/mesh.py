@@ -520,7 +520,6 @@ def calculate_curvature(VertexNormals,Avertex,Acorner,up,vp,nodes,facets,facet_n
     sol_A = np.matmul(AT,A)
     sol_b = np.matmul(AT,b[:,:,None])
     sol_b.shape= (-1,3)
-    print(np.shape(sol_A),np.shape(sol_b))
     x = np.linalg.solve(sol_A, sol_b[..., None])[..., 0]
 
     wfp = Acorner[:,:]/Avertex[facets[:]]

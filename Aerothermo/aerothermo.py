@@ -1159,6 +1159,8 @@ def aerodynamics_module_freemolecular(assembly, p, flow_direction):
     Shear[np.isnan(Shear)] = 0
 
     direction = np.copy(flow_direction)
+    direction[1] += 1e-8 # To prevent "bang-on" zero-norm tangent vectors
+    direction /= np.linalg.norm(direction)
     direction.shape = (-1)
     direction=np.tile(direction,(len(facet_normal[p]),1))
 
