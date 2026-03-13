@@ -1,0 +1,66 @@
+#!/bin/bash 
+cd ${0%/*} || exit 1 
+. $PATO_DIR/src/applications/utilities/runFunctions/RunFunctions 
+pato_init 
+if [ "$(uname)" = "Darwin" ]; then
+    source $FOAM_ETC/bashrc
+    source $PATO_DIR/bashrc
+fi
+
+if [ -z $1 ];
+then
+    echo "error: correct usage = ./Allrun_parallel <number_processors>"
+    exit 1
+fi
+re="^[0-9]+$"
+if ! [[ $1 =~ $re ]] ; then
+   echo "error: First argument is not a number" >&2
+   exit 1
+fi
+
+NPROCESSOR=$1
+
+if [ "$(uname)" = "Darwin" ]; then
+    sed_cmd=gsed
+else
+    sed_cmd=sed
+fi
+$sed_cmd -i "s/numberOfSubdomains \+[0-9]*;/numberOfSubdomains ""$NPROCESSOR"";/g" system/subMat1/decomposeParDict
+# Copy previous result to 0/ (skip on first run / after remesh)
+if [ -d processor0/0.25 ]; then
+    for p in processor*; do
+        cp -r "$p/0.25" "$p/0"
+        # Reset time metadata to 0 so PATOx solves the full interval
+        for tf in "$p/0/uniform/time" "$p/0/subMat1/uniform/time"; do
+            if [ -f "$tf" ]; then
+                $sed_cmd -i 's/value\s\+[^;]*/value           0/' "$tf"
+                $sed_cmd -i 's/deltaT0\s\+[^;]*/deltaT0         0/' "$tf"
+            fi
+        done
+    done
+fi
+cp qconv/BC_0 qconv/BC_0.25
+mpiexec -np $NPROCESSOR PATOx -parallel 
+TIME_STEP=0.25 
+MAT_NAME=subMat1 
+cd processor0/
+cp -r "$TIME_STEP/$MAT_NAME"/* "$TIME_STEP" 
+cp -r constant/"$MAT_NAME"/polyMesh/  "$TIME_STEP"/ 
+cd .. 
+cd processor1/
+cp -r "$TIME_STEP/$MAT_NAME"/* "$TIME_STEP" 
+cp -r constant/"$MAT_NAME"/polyMesh/  "$TIME_STEP"/ 
+cd .. 
+cp system/"$MAT_NAME"/fvSchemes  system/ 
+cp system/"$MAT_NAME"/fvSolution system/ 
+cp system/"$MAT_NAME"/decomposeParDict system/ 
+$sed_cmd -i "s/startTime *[^;]*;/startTime       $TIME_STEP;/g" system/controlDict
+foamJob -p -s foamToVTK -time 0.25 -useTimeName
+$sed_cmd -i "s/startTime *[^;]*;/startTime       0;/g" system/controlDict
+cp qconv/BC* qconv-bkp/ 
+rm qconv/BC* 
+rm -f mesh/*su2 
+rm -f processor0/VTK/top/top_0.vtk 
+rm -rf processor0/0 
+rm -f processor1/VTK/top/top_0.vtk 
+rm -rf processor1/0 

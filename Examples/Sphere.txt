@@ -10,6 +10,9 @@ Fidelity = Low
 Output_folder = Sphere
 FENICS = False
 
+[Mesh]
+Recursion_limit = 5000
+
 [Trajectory]
 Altitude = 200000
 Velocity = 7000

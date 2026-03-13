@@ -1,0 +1,1872 @@
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40678
+  cells:            85574
+  Min volume = 6.14739e-08. Max volume = 0.000337418.  Total volume = 1.90903.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.493 average: 17.9023
+  Non-orthogonality check OK.
+=== ===
+  points:           40791
+  cells:            86295
+  Min volume = 6.14739e-08. Max volume = 0.000306384.  Total volume = 1.90902.  Cell volumes OK.
+  Mesh non-orthogonality Max: 63.8729 average: 17.8997
+  Non-orthogonality check OK.
+=== ===
+  points:           40805
+  cells:            86350
+  Min volume = 6.14739e-08. Max volume = 0.000303445.  Total volume = 1.90892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 60.2852 average: 17.8568
+  Non-orthogonality check OK.
+=== ===
+  points:           40788
+  cells:            86251
+  Min volume = 6.14739e-08. Max volume = 0.000271178.  Total volume = 1.90877.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.2832 average: 17.8834
+  Non-orthogonality check OK.
+=== ===
+  points:           40782
+  cells:            86248
+  Min volume = 6.14739e-08. Max volume = 0.000343585.  Total volume = 1.90852.  Cell volumes OK.
+  Mesh non-orthogonality Max: 60.1019 average: 17.8756
+  Non-orthogonality check OK.
+=== ===
+  points:           40777
+  cells:            86216
+  Min volume = 6.14739e-08. Max volume = 0.000292279.  Total volume = 1.90822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.7013 average: 17.9119
+  Non-orthogonality check OK.
+=== ===
+  points:           40784
+  cells:            86224
+  Min volume = 6.14739e-08. Max volume = 0.000279939.  Total volume = 1.90785.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.0057 average: 17.8748
+  Non-orthogonality check OK.
+=== ===
+  points:           40794
+  cells:            86279
+  Min volume = 6.13679e-08. Max volume = 0.000267254.  Total volume = 1.90741.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.3156 average: 17.8756
+  Non-orthogonality check OK.
+=== ===
+  points:           40780
+  cells:            86220
+  Min volume = 6.12567e-08. Max volume = 0.000286024.  Total volume = 1.90689.  Cell volumes OK.
+  Mesh non-orthogonality Max: 59.86 average: 17.8788
+  Non-orthogonality check OK.
+=== ===
+  points:           40744
+  cells:            85989
+  Min volume = 6.12388e-08. Max volume = 0.000295972.  Total volume = 1.90631.  Cell volumes OK.
+  Mesh non-orthogonality Max: 59.6978 average: 17.8768
+  Non-orthogonality check OK.
+=== ===
+  points:           40784
+  cells:            86246
+  Min volume = 6.1345e-08. Max volume = 0.000300623.  Total volume = 1.90565.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.3173 average: 17.9232
+  Non-orthogonality check OK.
+=== ===
+  points:           40787
+  cells:            86239
+  Min volume = 6.11584e-08. Max volume = 0.000270505.  Total volume = 1.90493.  Cell volumes OK.
+  Mesh non-orthogonality Max: 64.0036 average: 17.8719
+  Non-orthogonality check OK.
+=== ===
+  points:           40758
+  cells:            86084
+  Min volume = 6.06553e-08. Max volume = 0.000305628.  Total volume = 1.90413.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.606 average: 17.8843
+  Non-orthogonality check OK.
+=== ===
+  points:           40772
+  cells:            86166
+  Min volume = 6.06721e-08. Max volume = 0.000285247.  Total volume = 1.90324.  Cell volumes OK.
+  Mesh non-orthogonality Max: 60.8723 average: 17.8809
+  Non-orthogonality check OK.
+=== ===
+  points:           40788
+  cells:            86271
+  Min volume = 6.04104e-08. Max volume = 0.000311289.  Total volume = 1.9023.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.8393 average: 17.8866
+  Non-orthogonality check OK.
+=== ===
+  points:           40731
+  cells:            85902
+  Min volume = 6.02271e-08. Max volume = 0.000282704.  Total volume = 1.90128.  Cell volumes OK.
+  Mesh non-orthogonality Max: 63.8714 average: 17.8832
+  Non-orthogonality check OK.
+=== ===
+  points:           40766
+  cells:            86111
+  Min volume = 6.01642e-08. Max volume = 0.000304626.  Total volume = 1.90019.  Cell volumes OK.
+  Mesh non-orthogonality Max: 66.9008 average: 17.8651
+  Non-orthogonality check OK.
+=== ===
+  points:           40750
+  cells:            86006
+  Min volume = 5.99364e-08. Max volume = 0.000300612.  Total volume = 1.89899.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.0736 average: 17.867
+  Non-orthogonality check OK.
+=== ===
+  points:           40756
+  cells:            86057
+  Min volume = 5.9628e-08. Max volume = 0.000306653.  Total volume = 1.89772.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.2602 average: 17.8952
+  Non-orthogonality check OK.
+=== ===
+  points:           40774
+  cells:            86129
+  Min volume = 5.94001e-08. Max volume = 0.000290206.  Total volume = 1.89635.  Cell volumes OK.
+  Mesh non-orthogonality Max: 60.1404 average: 17.8758
+  Non-orthogonality check OK.
+=== ===
+  points:           40771
+  cells:            86151
+  Min volume = 5.84791e-08. Max volume = 0.000342895.  Total volume = 1.89491.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.7984 average: 17.8839
+  Non-orthogonality check OK.
+=== ===
+  points:           40729
+  cells:            85891
+  Min volume = 5.81034e-08. Max volume = 0.000344381.  Total volume = 1.89338.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.3489 average: 17.8736
+  Non-orthogonality check OK.
+=== ===
+  points:           40757
+  cells:            86054
+  Min volume = 5.7759e-08. Max volume = 0.000315279.  Total volume = 1.89178.  Cell volumes OK.
+  Mesh non-orthogonality Max: 63.8726 average: 17.9062
+  Non-orthogonality check OK.
+=== ===
+  points:           40759
+  cells:            86046
+  Min volume = 5.77241e-08. Max volume = 0.000310571.  Total volume = 1.89009.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.729 average: 17.8836
+  Non-orthogonality check OK.
+=== ===
+  points:           40746
+  cells:            85967
+  Min volume = 5.74052e-08. Max volume = 0.000314976.  Total volume = 1.88837.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.6929 average: 17.9142
+  Non-orthogonality check OK.
+=== ===
+  points:           40766
+  cells:            86098
+  Min volume = 5.69074e-08. Max volume = 0.000310825.  Total volume = 1.88658.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.7416 average: 17.9136
+  Non-orthogonality check OK.
+=== ===
+  points:           40756
+  cells:            85997
+  Min volume = 5.67785e-08. Max volume = 0.000346513.  Total volume = 1.88475.  Cell volumes OK.
+  Mesh non-orthogonality Max: 62.4628 average: 17.8996
+  Non-orthogonality check OK.
+=== ===
+  points:           40747
+  cells:            85973
+  Min volume = 5.66887e-08. Max volume = 0.000290122.  Total volume = 1.88287.  Cell volumes OK.
+  Mesh non-orthogonality Max: 64.1362 average: 17.9235
+  Non-orthogonality check OK.
+=== ===
+  points:           40747
+  cells:            85944
+  Min volume = 5.64082e-08. Max volume = 0.000271816.  Total volume = 1.88091.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.9415 average: 17.8688
+  Non-orthogonality check OK.
+=== ===
+  points:           40754
+  cells:            86019
+  Min volume = 5.62481e-08. Max volume = 0.000310338.  Total volume = 1.87887.  Cell volumes OK.
+  Mesh non-orthogonality Max: 61.0242 average: 17.9287
+  Non-orthogonality check OK.
+=== ===
+  points:           40762
+  cells:            86056
+  Min volume = 5.61208e-08. Max volume = 0.000270454.  Total volume = 1.87675.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.7484 average: 17.904
+  Non-orthogonality check OK.
+=== ===
+  points:           40753
+  cells:            85910
+  Min volume = 5.57542e-08. Max volume = 0.000291936.  Total volume = 1.87456.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.7296 average: 17.9095
+  Non-orthogonality check OK.
+=== ===
+  points:           40786
+  cells:            86136
+  Min volume = 5.5747e-08. Max volume = 0.000301677.  Total volume = 1.87227.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.6411 average: 17.9575
+  Non-orthogonality check OK.
+=== ===
+  points:           40785
+  cells:            86109
+  Min volume = 5.54327e-08. Max volume = 0.000273899.  Total volume = 1.8699.  Cell volumes OK.
+  Mesh non-orthogonality Max: 66.092 average: 17.9378
+  Non-orthogonality check OK.
+=== ===
+  points:           40779
+  cells:            86075
+  Min volume = 5.53829e-08. Max volume = 0.000268355.  Total volume = 1.86749.  Cell volumes OK.
+  Mesh non-orthogonality Max: 63.1632 average: 17.9284
+  Non-orthogonality check OK.
+=== ===
+  points:           40789
+  cells:            86148
+  Min volume = 5.52072e-08. Max volume = 0.000371234.  Total volume = 1.86507.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.3363 average: 17.9377
+  Non-orthogonality check OK.
+=== ===
+  points:           40762
+  cells:            85970
+  Min volume = 5.47413e-08. Max volume = 0.000336398.  Total volume = 1.8626.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.1396 average: 17.9268
+  Non-orthogonality check OK.
+=== ===
+  points:           40759
+  cells:            85957
+  Min volume = 5.47038e-08. Max volume = 0.000322418.  Total volume = 1.86012.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0973 average: 17.9344
+  Non-orthogonality check OK.
+=== ===
+  points:           40791
+  cells:            86135
+  Min volume = 5.48063e-08. Max volume = 0.000264636.  Total volume = 1.85758.  Cell volumes OK.
+  Mesh non-orthogonality Max: 62.6425 average: 17.9415
+  Non-orthogonality check OK.
+=== ===
+  points:           40789
+  cells:            86144
+  Min volume = 5.4613e-08. Max volume = 0.000270712.  Total volume = 1.85493.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.8833 average: 17.9348
+  Non-orthogonality check OK.
+=== ===
+  points:           40769
+  cells:            86055
+  Min volume = 5.42339e-08. Max volume = 0.000292768.  Total volume = 1.85216.  Cell volumes OK.
+  Mesh non-orthogonality Max: 64.2749 average: 17.9649
+  Non-orthogonality check OK.
+=== ===
+  points:           40762
+  cells:            86009
+  Min volume = 5.43976e-08. Max volume = 0.000266058.  Total volume = 1.84929.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.6008 average: 17.9897
+  Non-orthogonality check OK.
+=== ===
+  points:           40780
+  cells:            86097
+  Min volume = 5.415e-08. Max volume = 0.000288256.  Total volume = 1.84639.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.066 average: 17.9376
+  Non-orthogonality check OK.
+=== ===
+  points:           40767
+  cells:            86031
+  Min volume = 5.4016e-08. Max volume = 0.000296277.  Total volume = 1.84356.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.9373 average: 17.9642
+  Non-orthogonality check OK.
+=== ===
+  points:           40768
+  cells:            86044
+  Min volume = 5.38869e-08. Max volume = 0.000261742.  Total volume = 1.84086.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.3898 average: 18.0015
+  Non-orthogonality check OK.
+=== ===
+  points:           40776
+  cells:            86062
+  Min volume = 5.3757e-08. Max volume = 0.000267672.  Total volume = 1.83828.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.9769 average: 17.9345
+  Non-orthogonality check OK.
+=== ===
+  points:           40790
+  cells:            86166
+  Min volume = 5.35152e-08. Max volume = 0.00027399.  Total volume = 1.83573.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.3839 average: 17.9548
+  Non-orthogonality check OK.
+=== ===
+  points:           40754
+  cells:            85970
+  Min volume = 5.33175e-08. Max volume = 0.000298157.  Total volume = 1.83297.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.0062 average: 17.9958
+  Non-orthogonality check OK.
+=== ===
+  points:           40763
+  cells:            86044
+  Min volume = 5.34966e-08. Max volume = 0.000297172.  Total volume = 1.8299.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.9963 average: 17.976
+  Non-orthogonality check OK.
+=== ===
+  points:           40723
+  cells:            85773
+  Min volume = 5.32361e-08. Max volume = 0.000352798.  Total volume = 1.82658.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.7992 average: 17.9582
+  Non-orthogonality check OK.
+=== ===
+  points:           40742
+  cells:            85924
+  Min volume = 5.27572e-08. Max volume = 0.000261886.  Total volume = 1.8234.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.7074 average: 17.9823
+  Non-orthogonality check OK.
+=== ===
+  points:           40763
+  cells:            86037
+  Min volume = 5.26608e-08. Max volume = 0.000268907.  Total volume = 1.82068.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.2485 average: 18.0325
+  Non-orthogonality check OK.
+=== ===
+  points:           40746
+  cells:            85951
+  Min volume = 5.2946e-08. Max volume = 0.000290858.  Total volume = 1.81855.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.3821 average: 18.0345
+  Non-orthogonality check OK.
+=== ===
+  points:           40782
+  cells:            86165
+  Min volume = 5.28085e-08. Max volume = 0.000257188.  Total volume = 1.8168.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.2742 average: 18.0331
+  Non-orthogonality check OK.
+=== ===
+  points:           40772
+  cells:            86094
+  Min volume = 5.2005e-08. Max volume = 0.000293312.  Total volume = 1.8151.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.2306 average: 18.0952
+  Non-orthogonality check OK.
+=== ===
+  points:           40757
+  cells:            86028
+  Min volume = 5.09699e-08. Max volume = 0.000290158.  Total volume = 1.81323.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.2561 average: 18.0857
+  Non-orthogonality check OK.
+=== ===
+  points:           40750
+  cells:            85957
+  Min volume = 4.98729e-08. Max volume = 0.000278778.  Total volume = 1.81094.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.1718 average: 18.0427
+  Non-orthogonality check OK.
+=== ===
+  points:           40739
+  cells:            85894
+  Min volume = 4.89282e-08. Max volume = 0.000297246.  Total volume = 1.80809.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.0578 average: 18.0286
+  Non-orthogonality check OK.
+=== ===
+  points:           40723
+  cells:            85822
+  Min volume = 4.79899e-08. Max volume = 0.000269849.  Total volume = 1.80482.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.9109 average: 18.0351
+  Non-orthogonality check OK.
+=== ===
+  points:           40747
+  cells:            85976
+  Min volume = 4.72439e-08. Max volume = 0.000240585.  Total volume = 1.80178.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.6057 average: 18.0718
+  Non-orthogonality check OK.
+=== ===
+  points:           40753
+  cells:            86012
+  Min volume = 4.71955e-08. Max volume = 0.000260055.  Total volume = 1.79967.  Cell volumes OK.
+  Mesh non-orthogonality Max: 87.3845 average: 18.0936
+  Non-orthogonality check OK.
+=== ===
+  points:           40739
+  cells:            85920
+  Min volume = 4.71955e-08. Max volume = 0.00029006.  Total volume = 1.79865.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.8515 average: 18.0775
+  Non-orthogonality check OK.
+=== ===
+  points:           40736
+  cells:            85903
+  Min volume = 4.71955e-08. Max volume = 0.00026247.  Total volume = 1.79831.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.5981 average: 18.0613
+  Non-orthogonality check OK.
+=== ===
+  points:           40730
+  cells:            85864
+  Min volume = 4.71955e-08. Max volume = 0.000262463.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.7101 average: 18.1109
+  Non-orthogonality check OK.
+=== ===
+  points:           40738
+  cells:            85929
+  Min volume = 4.71955e-08. Max volume = 0.000322595.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.8525 average: 18.0892
+  Non-orthogonality check OK.
+=== ===
+  points:           40739
+  cells:            85946
+  Min volume = 4.71955e-08. Max volume = 0.000273797.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.9817 average: 18.1349
+  Non-orthogonality check OK.
+=== ===
+  points:           40775
+  cells:            86169
+  Min volume = 4.71955e-08. Max volume = 0.000250672.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.934 average: 18.0891
+  Non-orthogonality check OK.
+=== ===
+  points:           40775
+  cells:            86154
+  Min volume = 4.71955e-08. Max volume = 0.000300844.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.539 average: 18.1091
+  Non-orthogonality check OK.
+=== ===
+  points:           40775
+  cells:            86154
+  Min volume = 4.71955e-08. Max volume = 0.000300844.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.539 average: 18.1091
+  Non-orthogonality check OK.
+=== ===
+  points:           40775
+  cells:            86154
+  Min volume = 4.71955e-08. Max volume = 0.000300844.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.539 average: 18.1091
+  Non-orthogonality check OK.
+=== ===
+  points:           40775
+  cells:            86154
+  Min volume = 4.71955e-08. Max volume = 0.000300844.  Total volume = 1.79822.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.539 average: 18.1091
+  Non-orthogonality check OK.
+=== ===
+  points:           40751
+  cells:            86015
+  Min volume = 4.71955e-08. Max volume = 0.000256363.  Total volume = 1.79811.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.9809 average: 18.0903
+  Non-orthogonality check OK.
+=== ===
+  points:           40750
+  cells:            86011
+  Min volume = 4.71955e-08. Max volume = 0.000267761.  Total volume = 1.79776.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.9813 average: 18.1041
+  Non-orthogonality check OK.
+=== ===
+  points:           40741
+  cells:            85958
+  Min volume = 4.71955e-08. Max volume = 0.000255573.  Total volume = 1.79697.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.9919 average: 18.0889
+  Non-orthogonality check OK.
+=== ===
+  points:           40759
+  cells:            86075
+  Min volume = 4.71955e-08. Max volume = 0.000297636.  Total volume = 1.79564.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.1407 average: 18.131
+  Non-orthogonality check OK.
+=== ===
+  points:           40739
+  cells:            85954
+  Min volume = 4.71955e-08. Max volume = 0.000383785.  Total volume = 1.79374.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.8902 average: 18.0854
+  Non-orthogonality check OK.
+=== ===
+  points:           40756
+  cells:            86047
+  Min volume = 4.71955e-08. Max volume = 0.000318302.  Total volume = 1.79168.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.1617 average: 18.0723
+  Non-orthogonality check OK.
+=== ===
+  points:           40742
+  cells:            85966
+  Min volume = 4.71955e-08. Max volume = 0.000264299.  Total volume = 1.79005.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.7959 average: 18.0876
+  Non-orthogonality check OK.
+=== ===
+  points:           40770
+  cells:            86142
+  Min volume = 4.71955e-08. Max volume = 0.000271165.  Total volume = 1.7893.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.4096 average: 18.0636
+  Non-orthogonality check OK.
+=== ===
+  points:           40736
+  cells:            85925
+  Min volume = 4.71955e-08. Max volume = 0.000294228.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0921
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40740
+  cells:            85959
+  Min volume = 4.71955e-08. Max volume = 0.000302774.  Total volume = 1.7892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0783
+  Non-orthogonality check OK.
+=== ===
+  points:           40743
+  cells:            85970
+  Min volume = 4.71955e-08. Max volume = 0.000272928.  Total volume = 1.78919.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.064
+  Non-orthogonality check OK.
+=== ===
+  points:           40741
+  cells:            85953
+  Min volume = 4.71955e-08. Max volume = 0.000276952.  Total volume = 1.78914.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0664
+  Non-orthogonality check OK.
+=== ===
+  points:           40734
+  cells:            85913
+  Min volume = 4.71955e-08. Max volume = 0.000276952.  Total volume = 1.78892.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0026 average: 18.0861
+  Non-orthogonality check OK.
+=== ===
+  points:           40725
+  cells:            85845
+  Min volume = 4.71955e-08. Max volume = 0.000276952.  Total volume = 1.78853.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0028 average: 18.0546
+  Non-orthogonality check OK.
+=== ===
+  points:           40754
+  cells:            86046
+  Min volume = 4.71955e-08. Max volume = 0.000302914.  Total volume = 1.78791.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.0028 average: 18.0684
+  Non-orthogonality check OK.
+=== ===
+  points:           40743
+  cells:            85961
+  Min volume = 4.71955e-08. Max volume = 0.000258422.  Total volume = 1.78671.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.8006 average: 18.0546
+  Non-orthogonality check OK.
+=== ===
+  points:           40753
+  cells:            86025
+  Min volume = 4.71955e-08. Max volume = 0.000273084.  Total volume = 1.78479.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.0071 average: 18.0492
+  Non-orthogonality check OK.
+=== ===
+  points:           40737
+  cells:            85954
+  Min volume = 4.71955e-08. Max volume = 0.00027368.  Total volume = 1.78279.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.0558 average: 18.0788
+  Non-orthogonality check OK.
+=== ===
+  points:           40750
+  cells:            86030
+  Min volume = 4.71955e-08. Max volume = 0.000259089.  Total volume = 1.78115.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.3899 average: 18.0412
+  Non-orthogonality check OK.
+=== ===
+  points:           40749
+  cells:            86030
+  Min volume = 4.71955e-08. Max volume = 0.000251301.  Total volume = 1.78016.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.4922 average: 18.0714
+  Non-orthogonality check OK.
+=== ===
+  points:           40748
+  cells:            85998
+  Min volume = 4.71955e-08. Max volume = 0.000328784.  Total volume = 1.77987.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.8487 average: 18.036
+  Non-orthogonality check OK.
+=== ===
+  points:           40749
+  cells:            86012
+  Min volume = 4.71955e-08. Max volume = 0.000262884.  Total volume = 1.77982.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.2723 average: 18.0552
+  Non-orthogonality check OK.
+=== ===
+  points:           40749
+  cells:            86012
+  Min volume = 4.71955e-08. Max volume = 0.000262884.  Total volume = 1.77982.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.2723 average: 18.0552
+  Non-orthogonality check OK.
+=== ===
+  points:           40749
+  cells:            86012
+  Min volume = 4.71955e-08. Max volume = 0.000262884.  Total volume = 1.77982.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.2723 average: 18.0552
+  Non-orthogonality check OK.
+=== ===
+  points:           40738
+  cells:            85968
+  Min volume = 4.71942e-08. Max volume = 0.000281839.  Total volume = 1.77981.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.0098 average: 18.0557
+  Non-orthogonality check OK.
+=== ===
+  points:           40727
+  cells:            85892
+  Min volume = 4.71703e-08. Max volume = 0.000337528.  Total volume = 1.77978.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.8576 average: 18.0441
+  Non-orthogonality check OK.
+=== ===
+  points:           40736
+  cells:            85947
+  Min volume = 4.70272e-08. Max volume = 0.00026221.  Total volume = 1.77968.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.3245 average: 18.0607
+  Non-orthogonality check OK.
+=== ===
+  points:           40754
+  cells:            86041
+  Min volume = 4.68018e-08. Max volume = 0.000256418.  Total volume = 1.77949.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.5401 average: 18.0491
+  Non-orthogonality check OK.
+=== ===
+  points:           40738
+  cells:            85964
+  Min volume = 4.59494e-08. Max volume = 0.00028569.  Total volume = 1.77911.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.8576 average: 18.0124
+  Non-orthogonality check OK.
+=== ===
+  points:           40734
+  cells:            85958
+  Min volume = 4.53258e-08. Max volume = 0.000258434.  Total volume = 1.77853.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.9912 average: 18.0597
+  Non-orthogonality check OK.
+=== ===
+  points:           40731
+  cells:            85929
+  Min volume = 4.46166e-08. Max volume = 0.000334469.  Total volume = 1.7776.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.0832 average: 18.0494
+  Non-orthogonality check OK.
+=== ===
+  points:           40743
+  cells:            86016
+  Min volume = 4.34822e-08. Max volume = 0.000267511.  Total volume = 1.77609.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.0771 average: 18.0404
+  Non-orthogonality check OK.
+=== ===
+  points:           40746
+  cells:            86036
+  Min volume = 4.23548e-08. Max volume = 0.000283641.  Total volume = 1.7741.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.4469 average: 18.0857
+  Non-orthogonality check OK.
+=== ===
+  points:           40724
+  cells:            85905
+  Min volume = 4.14783e-08. Max volume = 0.000310729.  Total volume = 1.77188.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.2989 average: 18.0418
+  Non-orthogonality check OK.
+=== ===
+  points:           40712
+  cells:            85812
+  Min volume = 4.04511e-08. Max volume = 0.000265422.  Total volume = 1.76963.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.4981 average: 18.0518
+  Non-orthogonality check OK.
+=== ===
+  points:           40736
+  cells:            85961
+  Min volume = 3.95934e-08. Max volume = 0.00022543.  Total volume = 1.76743.  Cell volumes OK.
+  Mesh non-orthogonality Max: 65.6439 average: 18.0603
+  Non-orthogonality check OK.
+=== ===
+  points:           40697
+  cells:            85712
+  Min volume = 3.91675e-08. Max volume = 0.000294557.  Total volume = 1.76549.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.3861 average: 18.0768
+  Non-orthogonality check OK.
+=== ===
+  points:           40716
+  cells:            85830
+  Min volume = 3.89259e-08. Max volume = 0.000259147.  Total volume = 1.7639.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.7744 average: 18.1031
+  Non-orthogonality check OK.
+=== ===
+  points:           40730
+  cells:            85932
+  Min volume = 3.90516e-08. Max volume = 0.000294842.  Total volume = 1.76257.  Cell volumes OK.
+  Mesh non-orthogonality Max: 73.3237 average: 18.107
+  Non-orthogonality check OK.
+=== ===
+  points:           40710
+  cells:            85823
+  Min volume = 3.90516e-08. Max volume = 0.000247682.  Total volume = 1.76138.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.1392 average: 18.0722
+  Non-orthogonality check OK.
+=== ===
+  points:           40713
+  cells:            85825
+  Min volume = 3.90516e-08. Max volume = 0.000262541.  Total volume = 1.76021.  Cell volumes OK.
+  Mesh non-orthogonality Max: 67.5638 average: 18.1013
+  Non-orthogonality check OK.
+=== ===
+  points:           40715
+  cells:            85861
+  Min volume = 3.90516e-08. Max volume = 0.000278472.  Total volume = 1.75897.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.5384 average: 18.1226
+  Non-orthogonality check OK.
+=== ===
+  points:           40711
+  cells:            85839
+  Min volume = 3.90516e-08. Max volume = 0.000284712.  Total volume = 1.75749.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.252 average: 18.0853
+  Non-orthogonality check OK.
+=== ===
+  points:           40719
+  cells:            85892
+  Min volume = 3.90516e-08. Max volume = 0.000314488.  Total volume = 1.75571.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.8637 average: 18.0628
+  Non-orthogonality check OK.
+=== ===
+  points:           40709
+  cells:            85820
+  Min volume = 3.90516e-08. Max volume = 0.00029241.  Total volume = 1.75354.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.646 average: 18.055
+  Non-orthogonality check OK.
+=== ===
+  points:           40698
+  cells:            85769
+  Min volume = 3.90516e-08. Max volume = 0.000280412.  Total volume = 1.7509.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.8664 average: 18.0605
+  Non-orthogonality check OK.
+=== ===
+  points:           40703
+  cells:            85809
+  Min volume = 3.90516e-08. Max volume = 0.000266861.  Total volume = 1.74785.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.065 average: 18.0912
+  Non-orthogonality check OK.
+=== ===
+  points:           40735
+  cells:            86024
+  Min volume = 3.90516e-08. Max volume = 0.000269111.  Total volume = 1.74452.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.3225 average: 18.0725
+  Non-orthogonality check OK.
+=== ===
+  points:           40695
+  cells:            85867
+  Min volume = 3.90516e-08. Max volume = 0.00023762.  Total volume = 1.74109.  Cell volumes OK.
+  Mesh non-orthogonality Max: 68.3011 average: 18.0872
+  Non-orthogonality check OK.
+=== ===
+  points:           40675
+  cells:            85768
+  Min volume = 3.89102e-08. Max volume = 0.00024655.  Total volume = 1.73781.  Cell volumes OK.
+  Mesh non-orthogonality Max: 69.6909 average: 18.0896
+  Non-orthogonality check OK.
+=== ===
+  points:           40698
+  cells:            85889
+  Min volume = 3.87144e-08. Max volume = 0.00025175.  Total volume = 1.73494.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.1646 average: 18.0762
+  Non-orthogonality check OK.
+=== ===
+  points:           40685
+  cells:            85835
+  Min volume = 3.88778e-08. Max volume = 0.00025259.  Total volume = 1.73252.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.3726 average: 18.0642
+  Non-orthogonality check OK.
+=== ===
+  points:           40689
+  cells:            85858
+  Min volume = 3.8917e-08. Max volume = 0.000277537.  Total volume = 1.73045.  Cell volumes OK.
+  Mesh non-orthogonality Max: 78.0594 average: 18.0966
+  Non-orthogonality check OK.
+=== ===
+  points:           40715
+  cells:            86004
+  Min volume = 3.8917e-08. Max volume = 0.000235532.  Total volume = 1.72858.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.732 average: 18.0936
+  Non-orthogonality check OK.
+=== ===
+  points:           40674
+  cells:            85734
+  Min volume = 3.8917e-08. Max volume = 0.00025834.  Total volume = 1.7267.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.5718 average: 18.0716
+  Non-orthogonality check OK.
+=== ===
+  points:           40675
+  cells:            85790
+  Min volume = 3.8917e-08. Max volume = 0.000270186.  Total volume = 1.7246.  Cell volumes OK.
+  Mesh non-orthogonality Max: 86.5497 average: 18.0942
+  Non-orthogonality check OK.
+=== ===
+  points:           40692
+  cells:            85893
+  Min volume = 3.87652e-08. Max volume = 0.000263574.  Total volume = 1.72224.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.7589 average: 18.0608
+  Non-orthogonality check OK.
+=== ===
+  points:           40667
+  cells:            85715
+  Min volume = 3.85432e-08. Max volume = 0.000264859.  Total volume = 1.71943.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.0051 average: 18.0719
+  Non-orthogonality check OK.
+=== ===
+  points:           40663
+  cells:            85708
+  Min volume = 3.73004e-08. Max volume = 0.00024165.  Total volume = 1.71609.  Cell volumes OK.
+  Mesh non-orthogonality Max: 74.7458 average: 18.068
+  Non-orthogonality check OK.
+=== ===
+  points:           40671
+  cells:            85797
+  Min volume = 3.62743e-08. Max volume = 0.000279811.  Total volume = 1.71229.  Cell volumes OK.
+  Mesh non-orthogonality Max: 70.6642 average: 18.0827
+  Non-orthogonality check OK.
+=== ===
+  points:           40636
+  cells:            85582
+  Min volume = 3.50794e-08. Max volume = 0.000262322.  Total volume = 1.70805.  Cell volumes OK.
+  Mesh non-orthogonality Max: 73.4244 average: 18.0489
+  Non-orthogonality check OK.
+=== ===
+  points:           40682
+  cells:            85841
+  Min volume = 3.35719e-08. Max volume = 0.000248631.  Total volume = 1.70371.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.6127 average: 18.1035
+  Non-orthogonality check OK.
+=== ===
+  points:           40673
+  cells:            85756
+  Min volume = 3.22877e-08. Max volume = 0.000271152.  Total volume = 1.6995.  Cell volumes OK.
+  Mesh non-orthogonality Max: 71.7216 average: 18.085
+  Non-orthogonality check OK.
+=== ===
+  points:           40656
+  cells:            85702
+  Min volume = 3.09098e-08. Max volume = 0.000255423.  Total volume = 1.69576.  Cell volumes OK.
+  Mesh non-orthogonality Max: 73.5303 average: 18.1389
+  Non-orthogonality check OK.
+=== ===
+  points:           40666
+  cells:            85746
+  Min volume = 2.95477e-08. Max volume = 0.000243001.  Total volume = 1.69245.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.158 average: 18.1664
+  Non-orthogonality check OK.
+=== ===
+  points:           40658
+  cells:            85703
+  Min volume = 2.82789e-08. Max volume = 0.000226898.  Total volume = 1.68949.  Cell volumes OK.
+  Mesh non-orthogonality Max: 72.7564 average: 18.1442
+  Non-orthogonality check OK.
+=== ===
+  points:           40657
+  cells:            85699
+  Min volume = 2.70727e-08. Max volume = 0.000218569.  Total volume = 1.68669.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.0022 average: 18.1228
+  Non-orthogonality check OK.
+=== ===
+  points:           40635
+  cells:            85573
+  Min volume = 2.59171e-08. Max volume = 0.000235704.  Total volume = 1.68391.  Cell volumes OK.
+  Mesh non-orthogonality Max: 75.3988 average: 18.1897
+  Non-orthogonality check OK.
+=== ===
+  points:           40660
+  cells:            85711
+  Min volume = 2.47271e-08. Max volume = 0.000265308.  Total volume = 1.68093.  Cell volumes OK.
+  Mesh non-orthogonality Max: 74.513 average: 18.164
+  Non-orthogonality check OK.
+=== ===
+  points:           40654
+  cells:            85712
+  Min volume = 2.35758e-08. Max volume = 0.000233537.  Total volume = 1.67763.  Cell volumes OK.
+  Mesh non-orthogonality Max: 73.9842 average: 18.2153
+  Non-orthogonality check OK.
+=== ===
+  points:           40673
+  cells:            85844
+  Min volume = 2.26501e-08. Max volume = 0.00023536.  Total volume = 1.67388.  Cell volumes OK.
+  Mesh non-orthogonality Max: 74.5994 average: 18.2475
+  Non-orthogonality check OK.
+=== ===
+  points:           40626
+  cells:            85564
+  Min volume = 2.15376e-08. Max volume = 0.000268853.  Total volume = 1.66966.  Cell volumes OK.
+  Mesh non-orthogonality Max: 74.55 average: 18.2434
+  Non-orthogonality check OK.
+=== ===
+  points:           40612
+  cells:            85504
+  Min volume = 1.99044e-08. Max volume = 0.00025836.  Total volume = 1.66503.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.8472 average: 18.2793
+  Non-orthogonality check OK.
+=== ===
+  points:           40646
+  cells:            85742
+  Min volume = 1.83613e-08. Max volume = 0.000275508.  Total volume = 1.6602.  Cell volumes OK.
+  Mesh non-orthogonality Max: 75.1961 average: 18.3124
+  Non-orthogonality check OK.
+=== ===
+  points:           40611
+  cells:            85524
+  Min volume = 1.66343e-08. Max volume = 0.000233354.  Total volume = 1.65541.  Cell volumes OK.
+  Mesh non-orthogonality Max: 75.2044 average: 18.3067
+  Non-orthogonality check OK.
+=== ===
+  points:           40618
+  cells:            85597
+  Min volume = 1.50382e-08. Max volume = 0.000229933.  Total volume = 1.65086.  Cell volumes OK.
+  Mesh non-orthogonality Max: 75.4026 average: 18.3589
+  Non-orthogonality check OK.
+=== ===
+  points:           40608
+  cells:            85572
+  Min volume = 1.3652e-08. Max volume = 0.000260982.  Total volume = 1.64669.  Cell volumes OK.
+  Mesh non-orthogonality Max: 76.4969 average: 18.3602
+  Non-orthogonality check OK.
+=== ===
+  points:           40615
+  cells:            85592
+  Min volume = 1.23182e-08. Max volume = 0.000236683.  Total volume = 1.64297.  Cell volumes OK.
+  Mesh non-orthogonality Max: 84.1627 average: 18.3665
+  Non-orthogonality check OK.
+=== ===
+  points:           40614
+  cells:            85651
+  Min volume = 1.10731e-08. Max volume = 0.000233538.  Total volume = 1.63951.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.8595 average: 18.3712
+  Non-orthogonality check OK.
+=== ===
+  points:           40553
+  cells:            85285
+  Min volume = 1.02713e-08. Max volume = 0.000264724.  Total volume = 1.63613.  Cell volumes OK.
+  Mesh non-orthogonality Max: 77.5881 average: 18.3435
+  Non-orthogonality check OK.
+=== ===
+  points:           40561
+  cells:            85490
+  Min volume = 9.84772e-09. Max volume = 0.000251824.  Total volume = 1.63261.  Cell volumes OK.
+  Mesh non-orthogonality Max: 78.3444 average: 18.3439
+  Non-orthogonality check OK.
+=== ===
+  points:           40464
+  cells:            85375
+  Min volume = 9.38011e-09. Max volume = 0.000258297.  Total volume = 1.62886.  Cell volumes OK.
+  Mesh non-orthogonality Max: 79.5869 average: 18.3595
+  Non-orthogonality check OK.
+=== ===
+  points:           40405
+  cells:            85061
+  Min volume = 9.04266e-09. Max volume = 0.00025402.  Total volume = 1.62465.  Cell volumes OK.
+  Mesh non-orthogonality Max: 76.1903 average: 18.3209
+  Non-orthogonality check OK.
+=== ===
+  points:           40526
+  cells:            85341
+  Min volume = 8.7584e-09. Max volume = 0.000258082.  Total volume = 1.62003.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.7448 average: 18.4744
+  Non-orthogonality check OK.
+=== ===
+  points:           40511
+  cells:            85317
+  Min volume = 8.50557e-09. Max volume = 0.000268235.  Total volume = 1.61493.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.6561 average: 18.4796
+  Non-orthogonality check OK.
+=== ===
+  points:           40492
+  cells:            85243
+  Min volume = 8.33229e-09. Max volume = 0.000263104.  Total volume = 1.60952.  Cell volumes OK.
+  Mesh non-orthogonality Max: 85.2848 average: 18.4948
+  Non-orthogonality check OK.
+=== ===
+  points:           40495
+  cells:            85448
+  Min volume = 8.45425e-09. Max volume = 0.000283964.  Total volume = 1.60401.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.5257 average: 18.5603
+  Non-orthogonality check OK.
+=== ===
+  points:           40363
+  cells:            85123
+  Min volume = 8.64203e-09. Max volume = 0.000227361.  Total volume = 1.59871.  Cell volumes OK.
+  Mesh non-orthogonality Max: 85.23 average: 18.516
+  Non-orthogonality check OK.
+=== ===
+  points:           40473
+  cells:            85302
+  Min volume = 8.66312e-09. Max volume = 0.000269298.  Total volume = 1.5938.  Cell volumes OK.
+  Mesh non-orthogonality Max: 87.733 average: 18.5786
+  Non-orthogonality check OK.
+=== ===
+  points:           40429
+  cells:            85053
+  Min volume = 8.72928e-09. Max volume = 0.000234902.  Total volume = 1.58935.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.4393 average: 18.5755
+  Non-orthogonality check OK.
+=== ===
+  points:           40386
+  cells:            84988
+  Min volume = 8.79061e-09. Max volume = 0.000285063.  Total volume = 1.58528.  Cell volumes OK.
+  Mesh non-orthogonality Max: 84.1152 average: 18.7884
+  Non-orthogonality check OK.
+=== ===
+  points:           40374
+  cells:            85076
+  Min volume = 9.0629e-09. Max volume = 0.000306322.  Total volume = 1.58134.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.0583 average: 18.7568
+  Non-orthogonality check OK.
+=== ===
+  points:           40401
+  cells:            85161
+  Min volume = 9.26231e-09. Max volume = 0.000219335.  Total volume = 1.5774.  Cell volumes OK.
+  Mesh non-orthogonality Max: 80.8267 average: 18.7838
+  Non-orthogonality check OK.
+=== ===
+  points:           40334
+  cells:            85128
+  Min volume = 9.52518e-09. Max volume = 0.000244299.  Total volume = 1.57321.  Cell volumes OK.
+  Mesh non-orthogonality Max: 75.6361 average: 18.7652
+  Non-orthogonality check OK.
+=== ===
+  points:           40339
+  cells:            85176
+  Min volume = 9.90076e-09. Max volume = 0.000226961.  Total volume = 1.5686.  Cell volumes OK.
+  Mesh non-orthogonality Max: 76.4123 average: 18.7707
+  Non-orthogonality check OK.
+=== ===
+  points:           40331
+  cells:            85141
+  Min volume = 1.03588e-08. Max volume = 0.000254009.  Total volume = 1.5635.  Cell volumes OK.
+  Mesh non-orthogonality Max: 82.3247 average: 18.7823
+  Non-orthogonality check OK.
+=== ===
+  points:           40271
+  cells:            84908
+  Min volume = 1.0846e-08. Max volume = 0.000261133.  Total volume = 1.55793.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.4029 average: 18.8364
+  Non-orthogonality check OK.
+=== ===
+  points:           40268
+  cells:            84906
+  Min volume = 1.13705e-08. Max volume = 0.000256462.  Total volume = 1.55205.  Cell volumes OK.
+  Mesh non-orthogonality Max: 81.2524 average: 18.797
+  Non-orthogonality check OK.
+=== ===
+  points:           40249
+  cells:            84864
+  Min volume = 1.19147e-08. Max volume = 0.000223761.  Total volume = 1.54607.  Cell volumes OK.
+  Mesh non-orthogonality Max: 78.9455 average: 18.8089
+  Non-orthogonality check OK.
+=== ===
+  points:           40244
+  cells:            84912
+  Min volume = 1.23869e-08. Max volume = 0.000269271.  Total volume = 1.5403.  Cell volumes OK.
+  Mesh non-orthogonality Max: 83.9673 average: 18.8711
+  Non-orthogonality check OK.

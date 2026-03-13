@@ -1,0 +1,45 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 7
+Exec   : foamToVTK -time 0.25 -useTimeName -parallel
+Date   : Mar 13 2026
+Time   : 05:36:46
+Host   : "DESKTOP-RH89VA1"
+PID    : 1027568
+I/O    : uncollated
+Case   : /home/navraj/TITAN/simulation/PATO_0
+nProcs : 2
+Slaves : 1("DESKTOP-RH89VA1.1027569")
+Pstream initialized with:
+    floatTransfer      : 0
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0.25
+
+Time: 0.25
+    volScalarFields            : Ta p
+
+    Internal  : "/home/navraj/TITAN/simulation/PATO_0/processor0/VTK/processor0_0.25.vtk"
+[0]     Original cells:42515 points:20973   Additional cells:0  additional points:0
+[0] 
+[1]     Original cells:42397 points:21090   Additional cells:0  additional points:0
+[1] 
+    Patch     : "/home/navraj/TITAN/simulation/PATO_0/processor0/VTK/top/top_0.25.vtk"
+    Patch     : "/home/navraj/TITAN/simulation/PATO_0/processor0/VTK/procBoundary0to1/procBoundary0to1_0.25.vtk"
+Linking all processor files to "/home/navraj/TITAN/simulation/PATO_0/processor0/../VTK"
+End
+
+Finalising parallel run

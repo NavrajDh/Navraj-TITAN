@@ -1,0 +1,14 @@
+#!/bin/bash 
+cd simulation/PATO_0 
+cp -r origin.0 0 
+cd verification/unstructured_gmsh/ 
+ln -s /home/navraj/TITAN/simulation/PATO_0/mesh/mesh.msh 
+cd ../.. 
+gmshToFoam verification/unstructured_gmsh/mesh.msh 
+mv constant/polyMesh constant/subMat1 
+count=`ls -1 processor* 2>/dev/null | wc -l`
+if [ $count != 0 ];
+then
+    rm -rf processor*
+fi
+decomposePar -region subMat1
