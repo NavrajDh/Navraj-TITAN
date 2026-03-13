@@ -5,3 +5,6 @@ Executables
 TITAN_sol
 *.xml
 settings.json
+titan_env/
+__pycache__/
+*.pyc
